@@ -1,9 +1,10 @@
+
 <?php 
     include "conn.php";
     include "libraryx.php";
 
 
-    $api_key_value="dp123";
+    $api_key_value="dp";
 
     if(strtoupper($_SERVER["REQUEST_METHOD"])=="GET")
     {
