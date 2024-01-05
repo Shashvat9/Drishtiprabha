@@ -28,7 +28,7 @@ const char* password = "hithere.";
 // const char* password = "9428589579";
 const String serverName = "https://drishtiprabha.000webhostapp.com/update_db.php";
 const char* googleApiKey = "AIzaSyC-iSJulKT-gdv4JF3_hc3UZfYlRWWh6w4";
-String apiKeyValue = "dp123";
+String apiKeyValue = "dp";
 
 #endif
 WifiLocation location (googleApiKey);
