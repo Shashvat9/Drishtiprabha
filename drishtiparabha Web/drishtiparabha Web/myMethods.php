@@ -1,5 +1,5 @@
 <?php
-    $apiKey = "dp123";
+    $apiKey = "key";
 
 
     function setJsonValidate ($email,$password)
