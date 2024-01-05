@@ -24,10 +24,8 @@
 
 const char* ssid     = "Hi";
 const char* password = "hithere.";
-// const char* ssid     = "MADHAV";
-// const char* password = "9428589579";
 const String serverName = "https://drishtiprabha.000webhostapp.com/update_db.php";
-const char* googleApiKey = "AIzaSyC-iSJulKT-gdv4JF3_hc3UZfYlRWWh6w4";
+const char* googleApiKey = "";
 String apiKeyValue = "dp";
 
 #endif
@@ -35,13 +33,13 @@ WifiLocation location (googleApiKey);
 
 
 // Initialize Telegram BOT
-#define BOTtoken "5751523310:AAH3vLVApufNJBPr2tAlfA_FkCfLoTkgXg4"  // your Bot Token (Get from Botfather)
+#define BOTtoken ""  // your Bot Token (Get from Botfather)
 
 // Use @myidbot to find out the chat ID of an individual or a group
 // Also note that you need to click "start" on a bot before it can
 // message you
-#define CHAT_ID "5511379301" //shashvat
-// #define CHAT_ID "1638809558" //aryan
+#define CHAT_ID ""
+// #define CHAT_ID ""
 
 X509List cert(TELEGRAM_CERTIFICATE_ROOT);
 WiFiClientSecure client;
@@ -147,8 +145,7 @@ void send_alert(String lon,String lat)
         http.addHeader("Sec-Fetch-User", "?1");
         http.addHeader("Upgrade-Insecure-Requests", "1");
 //        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        http.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36");
-        // http.addHeader("Cookie", "__test=fad13ccfd536b9e6f2bb446873411e6d");
+        http.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 
 
         Serial.print("httpRequestData: ");
         Serial.println(httpRequestData);
