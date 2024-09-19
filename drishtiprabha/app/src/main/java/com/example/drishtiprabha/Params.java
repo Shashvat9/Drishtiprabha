@@ -4,7 +4,7 @@ public class Params {
     protected static final String loogdTag = "shashvat";
     protected static final String url = "https://drishtiprabha.000webhostapp.com/android_api.php";
     protected static final Integer[] success={1,6,8,10,12,14,18};
-    protected static final String API_KEY ="dp123";
+    protected static final String API_KEY ="key";
     protected static final String GET_LOC = "get_loc";
     protected static final String VALIDATE = "validate";
     protected static final String ADD_USER = "add_user";
