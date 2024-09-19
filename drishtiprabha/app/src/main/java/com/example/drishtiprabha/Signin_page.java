@@ -108,7 +108,6 @@ public class Signin_page extends AppCompatActivity{
                         Toast.makeText(Signin_page.this, "wrong cradancails.😟", Toast.LENGTH_SHORT).show();
                     }
                 }
-
                 @Override
                 public void onError(String error) {
                     Toast.makeText(Signin_page.this, "there is a problame with server plese stay tuned.😅", Toast.LENGTH_LONG).show();

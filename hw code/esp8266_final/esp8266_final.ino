@@ -40,6 +40,7 @@ WifiLocation location (googleApiKey);
 // Use @myidbot to find out the chat ID of an individual or a group
 // Also note that you need to click "start" on a bot before it can
 // message you
+
 #define CHAT_ID "5511379301" //shashvat
 // #define CHAT_ID "1638809558" //aryan
 
@@ -127,18 +128,20 @@ void send_alert(String lon,String lat)
         WiFiClientSecure wificlint;
         wificlint.setInsecure();
         String httpRequestData = "?api_key=dp123&longitude="+lon+"&latitude="+lat+"&add=dp1";
+        // String httpRequestData="I need help this is my loaction- https://www.google.com/maps/search/" + lat + "," + lon; 
         // int longitude=5566;
         // int latitude=6655;
 
         http.addHeader(":authority", "drishtiprabha.000webhostapp.com");
         http.addHeader(":method", "GET");
-       http.addHeader(":path", "/update_db.php?api_key=dp123&latitude=21.726541&longitude=71.966305&add=dp1");
+      //  http.addHeader(":path", "/update_db.php?api_key=dp123&latitude=21.726541&longitude=71.966305&add=dp1");
+       http.addHeader(":path", "/update_db.php?api_key=dp123&latitude="+lat+"&longitude="+lon+"&add=dp1");
        http.addHeader(":scheme", "https");
         http.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
         http.addHeader("Accept-Encoding", "gzip, deflate, br");
         http.addHeader("Accept-Language", "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6");
         http.addHeader("Cache-Control", "max-age=0");
-        http.addHeader("Sec-Ch-Ua", "\"Chromium\";v=\"118\", \"Google Chrome\";v=\"118\", \"Not=A?Brand\";v=\"99\"");
+        http.addHeader("Sec-Ch-Ua", "\"Not)A;Brand\";v=\"99\", \"Google Chrome\";v=\"127\", \"Chromium\";v=\"127\"");
         http.addHeader("Sec-Ch-Ua-Mobile", "?0");
         http.addHeader("Sec-Ch-Ua-Platform", "\"Windows\"");
         http.addHeader("Sec-Fetch-Dest", "document");
@@ -147,7 +150,7 @@ void send_alert(String lon,String lat)
         http.addHeader("Sec-Fetch-User", "?1");
         http.addHeader("Upgrade-Insecure-Requests", "1");
 //        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        http.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36");
+        http.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36");
         // http.addHeader("Cookie", "__test=fad13ccfd536b9e6f2bb446873411e6d");
 
         Serial.print("httpRequestData: ");

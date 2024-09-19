@@ -1,11 +1,4 @@
 
-/*
-  Ultrasonic Sensor HC-SR04 and Arduino Tutorial
-
-  by Dejan Nedelkovski,
-  www.HowToMechatronics.com
-
-*/
 #include <SoftwareSerial.h>
 
 // defines pins numbers
@@ -32,6 +25,7 @@ void loop() {
 
   buttonState = digitalRead(BUTTON_PIN); // read new state
   // Clears the trigPin condition
+  buttonState = HIGH;
   
   if (buttonState == LOW) {
     delay(5000);
@@ -44,39 +38,30 @@ void loop() {
   else if (buttonState == HIGH)
   {
     // Clears the trigPin
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration = pulseIn(echoPin, HIGH);
-  // Calculating the distance
-  distance = duration * 0.034 / 2;
-  // Prints the distance on the Serial Monitor
-  Serial.print("Distance: ");
-  Serial.println(distance);
-
-  digitalWrite(trigPin, LOW);
-    delayMicroseconds(2);
-    // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(5);
+    // Sets the trigPin on HIGH state for 10 micro seconds
     digitalWrite(trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
     // Reads the echoPin, returns the sound wave travel time in microseconds
     duration = pulseIn(echoPin, HIGH);
     // Calculating the distance
-    distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+    distance = duration * 0.034 / 2;
+    // Prints the distance on the Serial Monitor
+    
+    Serial.print("Distance: ");
+    Serial.println(distance);
+
     // Displays the distance on the Serial Monitor
     if(distance<=100 && distance >=70)
     {
       digitalWrite(vibrate,HIGH);
-        // tone(SPEAKER,100);
-      digitalWrite(SPEAKER,HIGH);
+        tone(SPEAKER,100);
+      // digitalWrite(SPEAKER,HIGH);
         delay(100);
-        digitalWrite(SPEAKER,LOW);
-        // noTone(SPEAKER);
+        // digitalWrite(SPEAKER,LOW);
+        noTone(SPEAKER);
         delay(100);
     }
     else if(distance<70 && distance >=40)
