@@ -33,5 +33,5 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        scp -o StrictHostKeyChecking=no -r server/* ubuntu@<your-ec2-public-ip>:/var/www/html/
+        scp -o StrictHostKeyChecking=no -r server/* ubuntu@3.108.54.205:/var/www/html/
         ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
