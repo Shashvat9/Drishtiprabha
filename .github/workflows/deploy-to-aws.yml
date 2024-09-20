@@ -1,0 +1,36 @@
+name: Deploy to AWS (Server Directory Only)
+
+on:
+  push:
+    paths:
+      - 'server/**' 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1 
+
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        known_hosts: "" # Consider adding your EC2 instance's host key here for security
+
+    - name: Clear existing files in web root (optional)
+      run: |
+        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo rm -rf /var/www/html/*' 
+
+    - name: Deploy to EC2
+      run: |
+        scp -o StrictHostKeyChecking=no -r server/* ubuntu@<your-ec2-public-ip>:/var/www/html/
+        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
