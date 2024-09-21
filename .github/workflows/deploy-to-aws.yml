@@ -28,15 +28,15 @@ jobs:
 
     - name: Clear existing files in web root (optional)
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo rm -rf /var/www/html/api/*' 
+        ssh -o StrictHostKeyChecking=no dpapi@3.108.54.205 'sudo rm -rf /var/www/html/api/*' 
 
     - name: Deploy to EC2
       run: |
         # Create the 'api' directory if it doesn't exist (using sudo)
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo mkdir -p /var/www/html/api'
+        ssh -o StrictHostKeyChecking=no dpapi@3.108.54.205 'sudo mkdir -p /var/www/html/api'
         # Set ownership and permissions for the 'api' directory
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo chown -R www-data:www-data /var/www/html/api'
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo chmod -R 775 /var/www/html/api'
+        ssh -o StrictHostKeyChecking=no dpapi@3.108.54.205 'sudo chown -R www-data:www-data /var/www/html/api'
+        ssh -o StrictHostKeyChecking=no dpapi@3.108.54.205 'sudo chmod -R 775 /var/www/html/api'
         # Copy files to the 'api' directory
-        scp -o StrictHostKeyChecking=no -r server/* ubuntu@3.108.54.205:/var/www/html/api/
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
+        scp -o StrictHostKeyChecking=no -r server/* dpapi@3.108.54.205:/var/www/html/api/
+        ssh -o StrictHostKeyChecking=no dpapi@3.108.54.205 'sudo systemctl restart apache2'
