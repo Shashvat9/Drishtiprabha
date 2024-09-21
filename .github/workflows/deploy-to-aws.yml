@@ -32,5 +32,8 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        scp -o StrictHostKeyChecking=no -r --chmod=775 server/* ubuntu@3.108.54.205:/var/www/html/
+        # Deploy to EC2 using scp
+        scp -o StrictHostKeyChecking=no -r server/api/v1/* ubuntu@3.108.54.205:/var/www/html/api/v1/
+        # Set permissions after transfer
+        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo chmod -R 775 /var/www/html/api/v1/'
         ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
