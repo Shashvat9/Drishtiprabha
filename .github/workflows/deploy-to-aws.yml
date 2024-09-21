@@ -32,5 +32,5 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        rsync -avz -e 'ssh -o StrictHostKeyChecking=no' server/* ubuntu@3.108.54.205:/var/www/html/api/
+        scp -o StrictHostKeyChecking=no -r --chmod=775 server/* ubuntu@3.108.54.205:/var/www/html/
         ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
