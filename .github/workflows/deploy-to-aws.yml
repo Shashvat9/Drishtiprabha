@@ -23,17 +23,19 @@ jobs:
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
       with:
-        key:  ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         known_hosts: '|3.108.54.205 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQvCLqvynz6zgFc3fA1A1uQrXY9mki+kSA/H3At4WVhKQCQH25qFtB4J9wnL0vVmfGnn7O+XlqQrR7KW9KEyrw8d52k0/6aV69uJL/1mtTm7T2oaDAcwyTF+qu6Wa8/DQYrYwkski6k+mB2sG3S3669pZ2alGScrAiEA3Cpypntly/P2AonIaSbvDUp6HNfxG5tz+dAXJ4pTWImE6sva6JSqBQPrE5I2PWh3PC907YpikN14RGEGtYfS5PGd5FBIcQSa2jTmJBe5h/CX6jbeVR3OdnrNb5AG5/Km5S9EVnh48g6UmzC8Pokb53QrIv3bQL/rMNkhcJT8YBqbr0C4/A1Pg/0NjTRzdnH6FjNFnq7o7A5Abs8M+xMdn1QEwBWS+QLjxXu1msLL+rcGyC3VpYqQI4XbRRIhJB9WXnIHYNQN7aXzVc4fHL7GDlxrv+xZWnyTJ6XvZEaxPRWNhSVTNtJqGQWrwr0hlqFxb5MmhUUex+pO63zcjOesxXMfkJk/M='
 
-    - name: Clear existing files in web root (optional)
+    - name: Clear existing files in 'api/v1' directory (optional)
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo rm -rf /var/www/html/api/*' 
+        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo rm -rf /var/www/html/api/v1/*' 
+
+    - name: Ensure 'api/v1' directory exists and has correct permissions
+      run: |
+        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo mkdir -p /var/www/html/api/v1 && sudo chown -R www-data:www-data /var/www/html/api && sudo chmod -R 775 /var/www/html/api'
 
     - name: Deploy to EC2
       run: |
-        # Deploy to EC2 using scp
-        scp -o StrictHostKeyChecking=no -r server/api/v1/* ubuntu@3.108.54.205:/var/www/html/api/v1/
-        # Set permissions after transfer
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo chmod -R 775 /var/www/html/api/v1/'
+        # Copy files directly to the 'api/v1' directory
+        scp -o StrictHostKeyChecking=no -r server/* ubuntu@3.108.54.205:/var/www/html/api/v1/
         ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
