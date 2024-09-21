@@ -23,7 +23,7 @@ jobs:
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
       with:
-        key: ${{secrets.EC2_SSH_PRIVATE_KEY}}
+        key:  ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         known_hosts: '|3.108.54.205 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQvCLqvynz6zgFc3fA1A1uQrXY9mki+kSA/H3At4WVhKQCQH25qFtB4J9wnL0vVmfGnn7O+XlqQrR7KW9KEyrw8d52k0/6aV69uJL/1mtTm7T2oaDAcwyTF+qu6Wa8/DQYrYwkski6k+mB2sG3S3669pZ2alGScrAiEA3Cpypntly/P2AonIaSbvDUp6HNfxG5tz+dAXJ4pTWImE6sva6JSqBQPrE5I2PWh3PC907YpikN14RGEGtYfS5PGd5FBIcQSa2jTmJBe5h/CX6jbeVR3OdnrNb5AG5/Km5S9EVnh48g6UmzC8Pokb53QrIv3bQL/rMNkhcJT8YBqbr0C4/A1Pg/0NjTRzdnH6FjNFnq7o7A5Abs8M+xMdn1QEwBWS+QLjxXu1msLL+rcGyC3VpYqQI4XbRRIhJB9WXnIHYNQN7aXzVc4fHL7GDlxrv+xZWnyTJ6XvZEaxPRWNhSVTNtJqGQWrwr0hlqFxb5MmhUUex+pO63zcjOesxXMfkJk/M='
 
     - name: Clear existing files in web root (optional)
