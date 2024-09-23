@@ -1,8 +1,8 @@
 <?php
-    $hostname="localhost";
-    $uname="root";
+    $hostname="3.108.54.205";
+    $uname="shashvat";
     $dbname="drishtiprabha";
-    $password_db="";
+    $password_db="shashvat@dp";
 
     $con=mysqli_connect($hostname,$uname,$password_db,$dbname);
     if($con->connect_error)
