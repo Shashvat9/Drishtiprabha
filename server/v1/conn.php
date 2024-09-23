@@ -1,8 +1,8 @@
 <?php
     $hostname="localhost";
-    $uname="id20839964_shashvat";
-    $dbname="id20839964_drishtiprabha_db";
-    $password_db="Shashvat.Raj200399";
+    $uname="root";
+    $dbname="drishtiprabha";
+    $password_db="";
 
     $con=mysqli_connect($hostname,$uname,$password_db,$dbname);
     if($con->connect_error)
