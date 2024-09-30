@@ -28,7 +28,7 @@ jobs:
 
     - name: Clear existing files in 'api/v1' directory (optional)
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo rm -rf /var/www/html/api/v1/*' 
+        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo rm -rf /var/www/html/api/*' 
 
     # - name: Ensure 'api/v1' directory exists and has correct permissions
       # run: |
@@ -37,6 +37,6 @@ jobs:
     - name: Deploy to EC2
       run: |
         # Copy files directly to the 'api/v1' directory
-        scp -o StrictHostKeyChecking=no -r server/v1/* ubuntu@3.108.54.205:/var/www/html/api/v1
-        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo chown -R www-data:www-data /var/www/html/api/v1/*'
+        scp -o StrictHostKeyChecking=no -r server/v1/* ubuntu@3.108.54.205:/var/www/html/api
+        ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo chown -R www-data:www-data /var/www/html/api/*'
         ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
