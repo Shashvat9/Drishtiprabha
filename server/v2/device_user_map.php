@@ -18,7 +18,8 @@
         $api_key_value="dp123";
         
         if ($api_key == $api_key_value) {
-            $update_mapping_table = "UPDATE user_device_map SET d_id = '$d_id' WHERE email = '$email';";
+            $insert_mapping_table = "INSERT INTO user_device_map (d_id, email) VALUES ('$d_id', '$email');";
+            $update_mapping_table_fire = mysqli_query($con, $insert_mapping_table);
             $update_mapping_table_fire = mysqli_query($con,$update_mapping_table);
             if($update_mapping_table_fire){
                 $update_device = "UPDATE device SET device_name = '$d_name' WHERE d_id = '$d_id';";
