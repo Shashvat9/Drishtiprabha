@@ -27,15 +27,15 @@
             echo '<script>window.location = "location.php";</script>';
             break;
           case 2:
-            echo '<script>alert("Wrong Password Or username")</script>';
+            echo '<script>window.location = "login.html"; alert("Wrong Password Or username")</script>';
             // echo "wrong pass";
             break;
           case 3:
-            echo '<script>alert("Username Does not Exist")</script>';
+            echo '<script>window.location = "login.html";alert("Username Does not Exist")</script>';
             // echo "User Doesn't Exist";
             break;
             case 4:
-              echo '<script>alert("Data base problem")</script>';
+              echo '<script>window.location = "login.html";alert("Data base problem")</script>';
                 // echo "db Problem";
                 break;
             default: 

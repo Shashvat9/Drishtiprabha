@@ -5,66 +5,55 @@ body {
     padding: 0;
 }
 .container {
-    max-width: 800px;
+    max-width: 600px;
     margin: 50px auto;
-    padding: 30px;
+    padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     position: absolute;
-    right: 200px;
+    right: 270px;
     bottom: 126px;
 }
-
 .container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: center; /* Center the heading */
 }
 .form-group {
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
 }
 .form-group label {
-    flex: 1;
+    display: block;
+    margin-bottom: 5px;
     font-weight: bold;
+    text-align: left; /* Align labels to the left */
 }
 .form-group input {
-    flex: 2;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    text-align: left; /* Align input text to the left */
 }
-.form-group .buttons {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-.form-group .buttons button {
-    margin-left: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-.form-group .buttons button:hover {
-    background-color: #0056b3;
-    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
-}
-.device-container {
-    display: none;
-    margin-top: 20px;
-}
-.device-container .device-item {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
+.form-group {
+    text-align: center; /* Center the button horizontally */
+  }
+  
+  .small-center-button {
+    width: 250px; /* Adjust the width as needed */
+    padding: 5px; /* Adjust padding as needed */
+    font-size: 20px; /* Adjust font size as needed */
+    background-color: #007bff; /* Optional: Add background color */
+    border: none; /* Optional: Add border */
+    border-radius: 4px; /* Optional: Add border radius */
+    color: #fff; /* Optional: Add text color */
+    cursor: pointer; /* Optional: Add cursor pointer */
+    display: inline-block; /* Ensure the button is an inline-block element */
+    margin: 10px auto 0 auto; /* Center the button */
+  }
+  
+  .small-center-button:hover {
+    background-color: #0056b3; /* Optional: Add hover background color */
+  }
 
 @-moz-keyframes flash {
     0% {
@@ -9840,7 +9829,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .col-lg {
       flex: 1 0 0%;
     }
@@ -12174,7 +12163,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .dropdown-menu-lg-start {
       --bs-position: start;
     }
@@ -12823,7 +12812,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .navbar-expand-lg {
       flex-wrap: nowrap;
       justify-content: flex-start;
@@ -13649,7 +13638,7 @@ body {
   }
   
   .alert-danger {
-    color: #992b2b;
+    color: #800b2b;
     background-color: #ffdada;
     border-color: #ffc8c8;
   }
@@ -13882,7 +13871,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .list-group-horizontal-lg {
       flex-direction: row;
     }
@@ -14050,19 +14039,19 @@ body {
   }
   
   .list-group-item-danger {
-    color: #992b2b;
+    color: #800b2b;
     background-color: #ffdada;
   }
   
   .list-group-item-danger.list-group-item-action:hover, .list-group-item-danger.list-group-item-action:focus {
-    color: #992b2b;
+    color: #800b2b;
     background-color: #e6c4c4;
   }
   
   .list-group-item-danger.list-group-item-action.active {
     color: #ffffff;
-    background-color: #992b2b;
-    border-color: #992b2b;
+    background-color: #800b2b;
+    border-color: #800b2b;
   }
   
   .list-group-item-light {
@@ -14331,7 +14320,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .modal-lg,
     .modal-xl {
       max-width: 800px;
@@ -15304,7 +15293,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .sticky-lg-top {
       position: sticky;
       top: 0;
@@ -17704,7 +17693,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .float-lg-start {
       float: left !important;
     }
@@ -19871,7 +19860,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .grid-margin-lg-0 {
       margin-bottom: 0;
     }
@@ -19929,7 +19918,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .border-right-lg {
       border-right: 1px solid #f3f3f3;
     }
@@ -19947,7 +19936,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .border-left-lg {
       border-left: 1px solid #f3f3f3;
     }
@@ -20081,7 +20070,7 @@ body {
     }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .border-lg-top {
       border-top: 1px solid #f3f3f3;
     }
@@ -22989,7 +22978,7 @@ body {
     display: none;
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .navbar .navbar-menu-wrapper .navbar-nav.navbar-nav-right {
       margin-left: auto;
     }
@@ -23028,7 +23017,7 @@ body {
   }
   
   /* Layouts */
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .sidebar-icon-only .navbar .navbar-brand-wrapper {
       width: 70px;
     }

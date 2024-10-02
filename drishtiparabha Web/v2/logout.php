@@ -5,7 +5,7 @@ session_start();
     {
         unset($_SESSION["email"]);
         // echo $_SESSION["email"];
-        echo '<script>window.location = "Signin.php";</script>';
+        echo '<script>window.location = "login.html";</script>';
     }
     else
     {

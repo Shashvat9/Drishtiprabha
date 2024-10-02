@@ -23,59 +23,11 @@ if(!isset($_SESSION["email"]))
   <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/device_mapping.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <style>
-       body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    position: absolute;
-    right: 270px;
-    bottom: 126px;
-}
-.container h2 {
-    text-align: center; /* Center the heading */
-}
-.form-group {
-    margin-bottom: 15px;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-align: left; /* Align labels to the left */
-}
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-align: left; /* Align input text to the left */
-}
-.form-group button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-}
-.form-group button:hover {
-    background-color: #0056b3;
-}
+    
     </style>
 </head>
 <body>
@@ -162,8 +114,8 @@ if(!isset($_SESSION["email"]))
                 <input type="text" id="device-name" name="device_name" required>
             </div>
             <div class="form-group">
-                <button type="submit">Add</button>
-            </div>
+  <button type="submit" class="small-center-button">ADD</button>
+</div>
         </form>
     </div>
       <!-- partial -->
