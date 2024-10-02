@@ -24,9 +24,10 @@
 
 const char* ssid     = "Hi";
 const char* password = "hithere.";
-const String serverName = "https://drishtiprabha.000webhostapp.com/update_db.php";
+const String serverName = "https://3.108.54.205/api/v2/update_db.php";
 const char* googleApiKey = "";
-String apiKeyValue = "dp";
+String apiKeyValue = "dp123";
+String d_id = "2"
 
 #endif
 WifiLocation location (googleApiKey);
@@ -35,17 +36,12 @@ WifiLocation location (googleApiKey);
 // Initialize Telegram BOT
 #define BOTtoken ""  // your Bot Token (Get from Botfather)
 
-// Use @myidbot to find out the chat ID of an individual or a group
-// Also note that you need to click "start" on a bot before it can
-// message you
-<<<<<<< HEAD:hw code/esp8266_final/esp8266_final.ino
 
 #define CHAT_ID "5511379301" //shashvat
 // #define CHAT_ID "1638809558" //aryan
-=======
+
 #define CHAT_ID ""
 // #define CHAT_ID ""
->>>>>>> 04593997752cf61e3d904b953400a7b5c331cbc2:hw code/esp8266_final.ino
 
 X509List cert(TELEGRAM_CERTIFICATE_ROOT);
 WiFiClientSecure client;
@@ -130,7 +126,7 @@ void send_alert(String lon,String lat)
   HTTPClient http;
         WiFiClientSecure wificlint;
         wificlint.setInsecure();
-        String httpRequestData = "?api_key=dp123&longitude="+lon+"&latitude="+lat+"&add=dp1";
+        String httpRequestData = "?api_key="+apiKeyValue+"&longitude="+lon+"&latitude="+lat+"&d_id="+d_id;
         // String httpRequestData="I need help this is my loaction- https://www.google.com/maps/search/" + lat + "," + lon; 
         // int longitude=5566;
         // int latitude=6655;
@@ -153,12 +149,9 @@ void send_alert(String lon,String lat)
         http.addHeader("Sec-Fetch-User", "?1");
         http.addHeader("Upgrade-Insecure-Requests", "1");
 //        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-<<<<<<< HEAD:hw code/esp8266_final/esp8266_final.ino
         http.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36");
         // http.addHeader("Cookie", "__test=fad13ccfd536b9e6f2bb446873411e6d");
-=======
-        http.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 
->>>>>>> 04593997752cf61e3d904b953400a7b5c331cbc2:hw code/esp8266_final.ino
+        http.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 ");
 
         Serial.print("httpRequestData: ");
         Serial.println(httpRequestData);
