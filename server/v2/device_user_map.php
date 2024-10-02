@@ -2,6 +2,14 @@
     include_once "conn.php";
 
     if($_SERVER['REQUEST_METHOD']=="POST"){
+        $required_keys = ['api_key', 'd_id', 'email', 'd_name'];
+        foreach ($required_keys as $key) {
+            if (!isset($_POST[$key])) {
+            json_send(0, "Missing required POST key: $key");
+            exit;
+            }
+        }
+
         $api_key = $_POST['api_key'];
         $d_id = $_POST['d_id'];
         $email = $_POST['email'];
