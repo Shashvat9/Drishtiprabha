@@ -9,7 +9,7 @@
 
         $api_key_value="dp123";
         
-        if (getdata($api_key) == $api_key_value) {
+        if ($api_key == $api_key_value) {
             $update_mapping_table = "UPDATE user_device_map SET d_id = '$d_id' WHERE email = '$email';";
             $update_mapping_table_fire = mysqli_query($con,$update_mapping_table);
             if($update_mapping_table_fire){
