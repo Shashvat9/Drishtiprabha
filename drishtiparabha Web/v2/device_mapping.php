@@ -162,7 +162,7 @@ if(!isset($_SESSION["email"]))
                 <input type="text" id="device-name" name="device_name" required>
             </div>
             <div class="form-group">
-                <button type="submit">Add Device</button>
+                <button type="submit">Add</button>
             </div>
         </form>
     </div>
