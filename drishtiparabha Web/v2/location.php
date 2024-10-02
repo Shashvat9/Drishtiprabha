@@ -83,7 +83,7 @@ if(!isset($_SESSION["email"]))
               <span class="menu-title">Location</span>
             </a>
             <li class="nav-item">
-              <a class="nav-link" href="location.php">
+              <a class="nav-link" href="profile.php">
               <i class="mdi mdi-account"></i>
               <span class="menu-title">Edit Profile</span>
             </a>

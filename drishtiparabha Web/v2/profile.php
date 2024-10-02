@@ -10,7 +10,8 @@
     </head>
 <body>
 
-    <div class="profile-container">
+   
+<div class="profile-container">
         <h2>Edit Profile</h2>
         <form action="update_profile.php" method="POST">
             <div class="form-group">
@@ -28,7 +29,6 @@
             <input type="submit" value="Save Changes">
         </form>
     </div>
-
 </body>
 </html>
 
