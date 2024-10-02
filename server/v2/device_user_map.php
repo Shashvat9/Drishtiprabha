@@ -45,6 +45,27 @@
             }
         }
     }
+    elseif($_SERVER['REQUEST_METHOD']=="GET"){
+        $required_keys = ['api_key','email'];
+        foreach ($required_keys as $key) {
+            if (!isset($_GET[$key])) {
+                json_send(0, "Missing required POST key: $key");
+                exit;
+            }
+        }
+        $select_from_user_device_map = "SELECT * FROM user_device_map WHERE email = '$email'";
+        $select_from_user_device_map_fire = mysqli_query($con,$select_from_user_device_map);
+        $data = mysqli_fetch_assoc($select_from_user_device_map_fire);
+        if($data){
+            $json_send(1,$data);
+        }
+        else{
+            json_send(1,"No data found");
+        }
+    }
+    else{
+        json_send(0,"Invalid request method");
+    }
 
     function json_send($code,$message)
     {
