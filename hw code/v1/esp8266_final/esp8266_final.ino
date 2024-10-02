@@ -27,7 +27,7 @@ const char* password = "hithere.";
 const String serverName = "https://3.108.54.205/api/v2/update_db.php";
 const char* googleApiKey = "";
 String apiKeyValue = "dp123";
-String d_id = "dp1"
+String d_id = "2"
 
 #endif
 WifiLocation location (googleApiKey);
