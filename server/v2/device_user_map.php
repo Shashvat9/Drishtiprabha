@@ -15,6 +15,8 @@
         $email = $_POST['email'];
         $d_name = $_POST['d_name'];
 
+        print_r($_POST);
+
         $api_key_value="dp123";
         
         if ($api_key == $api_key_value) {
