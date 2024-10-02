@@ -14,7 +14,8 @@ if(!isset($_SESSION["email"]))
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Location</title>
-  <!-- plugins:css -->
+
+ <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
@@ -81,6 +82,12 @@ if(!isset($_SESSION["email"]))
               <i class="mdi mdi-google-maps"></i>
               <span class="menu-title">Location</span>
             </a>
+            <li class="nav-item">
+              <a class="nav-link" href="location.php">
+              <i class="mdi mdi-account"></i>
+              <span class="menu-title">Edit Profile</span>
+            </a>
+            </li>
           </li>
 
           </li>  
