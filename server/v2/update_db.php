@@ -14,7 +14,7 @@
             $d_id = getdata($_GET["d_id"]);
             $time=date('m/d/Y h:i:s ', time());;
 
-            $insert="INSERT INTO location (longitude,latitude,timest) VALUES ('$longitude','$latitude','$time')";
+            $insert="INSERT INTO location (longitude,latitude) VALUES ('$longitude','$latitude')";
             $fire_insert=mysqli_query($con,$insert);
             if(!$fire_insert)
             {
