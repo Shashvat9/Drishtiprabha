@@ -106,14 +106,7 @@
             $fire_insert = mysqli_query($con, $insert);
             if ($fire_insert) {
                 // Success
-                $insert_user_device_map = "INSERT INTO user_device_map (email) VALUES ('$email');";
-                $fire_insert_user_device_map = mysqli_query($con, $insert_user_device_map);
-                if (!$fire_insert_user_device_map) {
-                    json_send(7, "Error in query execution: " . mysqli_error($con));
-                }
-                else{
-                    json_send(6, "User added");
-                }
+                json_send(6, "User added");
             } else {
                 // Error in query execution
                 json_send(7, "Error in query execution: " . mysqli_error($con));
