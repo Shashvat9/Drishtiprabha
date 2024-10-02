@@ -62,7 +62,7 @@
         $select_from_device_fire = mysqli_query($con,$select_from_device);
         $data = mysqli_fetch_assoc($select_from_device_fire);
         print_r($data);
-        if($data){
+        if($select_from_device_fire){
             $json_send(1,$data);
         }
         else{
