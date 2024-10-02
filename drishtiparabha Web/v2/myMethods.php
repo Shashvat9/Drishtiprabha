@@ -92,7 +92,36 @@
         
         // Returning the ID
         return $id;
-      }
+    }
+
+    function sendPostRequest($data) {
+
+        $url = "https://3.108.54.205/api/v2/device_user_map.php";
+        $ch = curl_init($url);
+    
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    
+        $response = curl_exec($ch);
+    
+        if (curl_errno($ch)) {
+            echo 'Curl error: ' . curl_error($ch);
+        }
+    
+        curl_close($ch);
+    
+        return json_decode($response, true);
+    }
+    
+    // Example usage:
+    
+    // $data = [
+    //     "api_key" => "dp123",
+    //     "d_id" => "12345",
+    //     "email" => "user@example.com",
+    //     "d_name" => "Device Name"
+    // ];
       
 
 
