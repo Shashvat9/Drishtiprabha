@@ -57,11 +57,11 @@
         $select_from_user_device_map = "SELECT d_id FROM user_device_map WHERE email = '$email'";
         $select_from_user_device_map_fire = mysqli_query($con,$select_from_user_device_map);
         $d_id = mysqli_fetch_assoc($select_from_user_device_map_fire)['d_id'];
-        echo $d_id;
 
         $select_from_device = "SELECT device_name,date_of_manufactur FROM device WHERE d_id = '$d_id'";
         $select_from_device_fire = mysqli_query($con,$select_from_device);
         $data = mysqli_fetch_assoc($select_from_device_fire);
+        print_r($data);
         if($data){
             $json_send(1,$data);
         }
