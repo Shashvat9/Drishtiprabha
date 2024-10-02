@@ -23,7 +23,7 @@ if(!isset($_SESSION["email"]))
   <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/device_mapping.css">
+  <link rel="stylesheet" href="css/1.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <style>
@@ -120,9 +120,9 @@ if(!isset($_SESSION["email"]))
           </li>  
         </ul>
       </nav>
-      <div class="container">
+      <div class="container ">
   <!-- Add Device Form -->
-  <div class="add-device-form">
+  <div class="add-device-form ">
     <h2>Add Device</h2><br>
     <form action="" method="post">
       <div class="form-group">
@@ -134,13 +134,14 @@ if(!isset($_SESSION["email"]))
         <input type="text" id="device-name" name="device_name" required>
       </div>
       <div class="form-group">
-        <button type="submit" class="small-center-button">ADD</button>
+        <button type="submit" class="small-center-button">ADD</button><br>
+        <a href="device_mapping.php" class="small-center-button">Back</a>
       </div>
+    </div>
     </form>
-  </div>
- <!-- Mapping Card Section -->
- <div class="card">
-    <div class="card-body">
+    <!-- Mapping Card Section -->
+ <div class="card mt-6">
+    <div class="card-body  ">
       <h5 class="card-title text-center">Device Information</h5>
       <p class="card-text"><strong>Device Name:</strong> <?php echo "hii" ?></p>
       <p class="card-text"><strong>Date of Manufacture:</strong> <?php echo "Hii" ?></p>
