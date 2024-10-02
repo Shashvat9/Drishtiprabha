@@ -37,6 +37,6 @@ jobs:
     - name: Deploy to EC2
       run: |
         # Copy files directly to the 'api' directory
-        scp -o StrictHostKeyChecking=no -r server/v1/* ubuntu@3.108.54.205:/var/www/html/api
+        scp -o StrictHostKeyChecking=no -r server/* ubuntu@3.108.54.205:/var/www/html/api
         ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo chown -R www-data:www-data /var/www/html/api/*'
         ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.205 'sudo systemctl restart apache2'
