@@ -95,25 +95,25 @@
         return $id;
     }
 
-    function sendPostRequest($data) {
+    // function sendPostRequest($data) {
 
-        $url = "https://3.108.54.205/api/v2/device_user_map.php";
-        $ch = curl_init($url);
+    //     $url = "https://3.108.54.205/api/v2/device_user_map.php";
+    //     $ch = curl_init($url);
     
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     curl_setopt($ch, CURLOPT_POST, true);
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
     
-        $response = curl_exec($ch);
+    //     $response = curl_exec($ch);
     
-        if (curl_errno($ch)) {
-            echo 'Curl error: ' . curl_error($ch);
-        }
+    //     if (curl_errno($ch)) {
+    //         echo 'Curl error: ' . curl_error($ch);
+    //     }
     
-        curl_close($ch);
+    //     curl_close($ch);
     
-        return json_decode($response, true);
-    }
+    //     return json_decode($response, true);
+    // }
     
     // Example usage:
     

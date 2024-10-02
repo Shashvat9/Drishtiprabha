@@ -1,8 +1,56 @@
-<?php session_start(); 
-if(!isset($_SESSION["email"]))
-{
-  echo "<script>alert('please signin to access this page')</script>";
-  echo '<script>window.location = "signin.php";</script>';
+<?php
+session_start();
+include_once "myMethods.php";
+if (!isset($_SESSION["email"])) {
+    echo "<script>alert('please signin to access this page')</script>";
+    echo '<script>window.location = "signin.php";</script>';
+}
+
+function sendPostRequest($data) {
+    $url = "https://3.108.54.205/api/v2/device_user_map.php";
+    $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        // Check for errors
+        if ($response === false) {
+            echo 'cURL Error: ' . curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        $jsonRes = $response;
+
+        // echo $jsonRes;
+
+        // $jsonAsoc = json_decode($jsonRes,true);            
+        
+        return json_decode($jsonRes,true);
+}
+
+$responseArray = [];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $deviceNumber = $_POST['device_number'];
+    $deviceName = $_POST['device_name'];
+
+    $data = [
+        'd_id' => $deviceNumber,
+        'd_name' => $deviceName,
+        'api_key' => 'dp123',
+        'email'=> $_SESSION["email"]
+        // Add other necessary fields here
+    ];
+
+    $responseArray = sendPostRequest($data);
 }
 ?>
 
@@ -135,7 +183,7 @@ if(!isset($_SESSION["email"]))
       </div>
       <div class="form-group">
         <button type="submit" class="small-center-button">ADD</button><br>
-        <a href="device_mapping.php" class="small-center-button">Back</a>
+        <a href="device_mapping.php" class="small-center-button">BACK</a>
       </div>
     </div>
     </form>
@@ -151,6 +199,15 @@ if(!isset($_SESSION["email"]))
     </div>
   </div>
 </div>
+<!-- Display the response array -->
+<?php if (!empty($responseArray)): ?>
+                    <div class="response-array">
+                        <h3>Response:</h3>
+                        <pre><?php print_r($responseArray); ?></pre>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const addDeviceBtn = document.getElementById("add-device-btn");
