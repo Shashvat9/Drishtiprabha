@@ -50,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        sendRequest();
+        String email = getSharedPreferences(Params.SHAREDP_REFERENCES, MODE_PRIVATE).getString("email", null);
+        sendRequest(email);
 
         refreshLayout.setOnRefreshListener(() -> {
-            request = new myRequest(getApplicationContext(), methods.setJsonGetLoc_All(), Params.GET_LOC);
+            request = new myRequest(getApplicationContext(), methods.setJsonGetLoc_All(email), Params.GET_LOC);
             request.setOnDataRecivedListener(new myRequest.OnDataRecivedListener() {
                 @Override
                 public void onJsonReceived(JSONObject json) {
@@ -91,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void sendRequest() {
-        request = new myRequest(getApplicationContext(), methods.setJsonGetLoc_All(), Params.GET_LOC);
+    public void sendRequest(String email) {
+        request = new myRequest(getApplicationContext(), methods.setJsonGetLoc_All(email), Params.GET_LOC);
         request.setOnDataRecivedListener(new myRequest.OnDataRecivedListener() {
             @Override
             public void onJsonReceived(JSONObject json) {
