@@ -54,7 +54,7 @@
             }
         }
         $email = $_GET['email'];
-        $select_from_user_device_map = "SELECT d_id, FROM user_device_map WHERE email = '$email'";
+        $select_from_user_device_map = "SELECT d_id FROM user_device_map WHERE email = '$email'";
         $select_from_user_device_map_fire = mysqli_query($con,$select_from_user_device_map);
         $d_id = mysqli_fetch_assoc($select_from_user_device_map_fire);
 
