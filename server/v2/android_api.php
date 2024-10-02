@@ -19,7 +19,7 @@
             }
 
             if (isset($_POST["get_loc"])) {
-                get_from_location($json["type"]);
+                get_from_location($json["type"],$json["email"]);
             }
             if (isset($_POST["set_flag"])) {
                 set_flag($json["id"]);
@@ -119,7 +119,7 @@
 }
 
 
-    function get_from_location($type)
+    function get_from_location($type,$email)
     {
         if(strtoupper($type)=="LAST")
         {
@@ -131,10 +131,10 @@
         }
         elseif (strtoupper($type)=="ALL")
         {
-            all_loc();
+            all_loc($email);
         }
     }
-
+// TODO: add email check for all the location type
     function last_loc()
     {
          // code = 8 > last location
@@ -188,14 +188,18 @@
             }
     }
         
-    function all_loc()
+    function all_loc($email)
     {
         // code = 12 > done
         // code = 13 > erro
         include "conn.php";
         $json=array();
-        $select = "SELECT * FROM `location` WHERE 1 ORDER BY id ASC;";
-        $result = mysqli_query($con, $select);
+
+        $select_d_id = "SELECT d_id FROM user_device_map WHERE email = '$email';";
+        $result_d_id = mysqli_query($con, $select_d_id);
+        $d_id = mysqli_fetch_assoc($result_d_id)["d_id"];
+        $select_location = "SELECT * FROM `location` WHERE d_id = $d_id ORDER BY id ASC;";
+        $result = mysqli_query($con, $select_location);
         if(isset($result))
         {
             // echo "hi";
