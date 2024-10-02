@@ -6,6 +6,7 @@
   box-sizing: border-box;
 }
 body {
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,7 +150,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
-  color: #DE4929;
+  color: #fff; /* Change text color to white */
   left: -100%;
   width: 200%;
   transform: translateX(0);
@@ -157,14 +158,15 @@ body {
   position: relative;
   font-weight: bold;
   font-weight: 900;
-  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
 }
 .toggle::before {
   position: absolute;
   content: "";
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: -1; /* Ensure the overlay is behind the text */
 }
 .container.active .toggle {
   transform: translateX(50%);
