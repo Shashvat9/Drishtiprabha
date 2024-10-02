@@ -26,6 +26,7 @@ if(!isset($_SESSION["email"]))
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <style></style>
 </head>
 <body>
   <div class="container-scroller">
