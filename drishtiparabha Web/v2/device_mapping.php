@@ -27,7 +27,25 @@ if(!isset($_SESSION["email"]))
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <style>
-    
+       /* .container {
+    position: relative;
+  }  */
+
+  .add-device-form {
+    display: none; /* Hide the form initially */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  .card {
+    margin-top: 20px;
+  }
     </style>
 </head>
 <body>
@@ -103,21 +121,45 @@ if(!isset($_SESSION["email"]))
         </ul>
       </nav>
       <div class="container">
-        <h2 >Add Device</h2><br>
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="device-number">Device Number</label>
-                <input type="text" id="device-number" name="device_number" required>
-            </div>
-            <div class="form-group">
-                <label for="device-name">Device Name</label>
-                <input type="text" id="device-name" name="device_name" required>
-            </div>
-            <div class="form-group">
-  <button type="submit" class="small-center-button">ADD</button>
-</div>
-        </form>
+  <!-- Add Device Form -->
+  <div class="add-device-form">
+    <h2>Add Device</h2><br>
+    <form action="" method="post">
+      <div class="form-group">
+        <label for="device-number">Device Number</label>
+        <input type="text" id="device-number" name="device_number" required>
+      </div>
+      <div class="form-group">
+        <label for="device-name">Device Name</label>
+        <input type="text" id="device-name" name="device_name" required>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="small-center-button">ADD</button>
+      </div>
+    </form>
+  </div>
+ <!-- Mapping Card Section -->
+ <div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">Device Information</h5>
+      <p class="card-text"><strong>Device Name:</strong> <?php echo "hii" ?></p>
+      <p class="card-text"><strong>Date of Manufacture:</strong> <?php echo "Hii" ?></p>
+      <button class="btn btn-primary">Edit</button>
+      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-success" id="add-device-btn">Add Device</button>
     </div>
+  </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const addDeviceBtn = document.getElementById("add-device-btn");
+        const addDeviceForm = document.querySelector(".add-device-form");
+
+        addDeviceBtn.addEventListener("click", function() {
+          addDeviceForm.style.display = "block";
+        });
+      });
+</script>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
