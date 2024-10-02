@@ -28,7 +28,7 @@ if(!isset($_SESSION["email"]))
   <link rel="shortcut icon" href="images/favicon.png" />
   <style>
   .profile-container {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: #6c757d;
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 40px;
@@ -66,7 +66,7 @@ label {
 input[type="text"], input[type="email"], input[type="tel"] {
     width: 100%;
     padding: 12px 15px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #f3f3f3;
     border: none;
     border-radius: 10px;
     color: #fff;
