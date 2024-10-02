@@ -54,8 +54,10 @@
             }
         }
         $select_from_user_device_map = "SELECT * FROM user_device_map WHERE email = '$email'";
+        echo $select_from_user_device_map;
         $select_from_user_device_map_fire = mysqli_query($con,$select_from_user_device_map);
         $data = mysqli_fetch_assoc($select_from_user_device_map_fire);
+        print_r($data);
         if($data){
             $json_send(1,$data);
         }
