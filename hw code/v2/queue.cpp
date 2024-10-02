@@ -9,22 +9,24 @@ struct Node {
     Node* next;
 };
 
-class CircularPriorityQueue {
+class StateManagedCircularQueue {
 private:
     Node* front;
     Node* rear;
     unordered_map<int, Node*> nodeCache; // Cache to store pointers to nodes
     int maxSize; // Maximum size of the queue
     int currentSize; // Current number of active elements in the queue
+    Node* inactiveNodes; // Stack of inactive nodes
 
 public:
-    CircularPriorityQueue(int size) {
+    StateManagedCircularQueue(int size) {
         front = rear = nullptr;
         maxSize = size;
         currentSize = 0;
+        inactiveNodes = nullptr;
     }
 
-    ~CircularPriorityQueue() {
+    ~StateManagedCircularQueue() {
         while (front != nullptr) {
             dequeue();
         }
@@ -37,15 +39,12 @@ public:
         }
 
         Node* temp = nullptr;
+
         // Check for inactive nodes to reuse
-        Node* start = front;
-        do {
-            if (start != nullptr && start->isActive == 0) {
-                temp = start;
-                break;
-            }
-            start = start->next;
-        } while (start != front);
+        if (inactiveNodes != nullptr) {
+            temp = inactiveNodes;
+            inactiveNodes = inactiveNodes->next;
+        }
 
         if (temp != nullptr) {
             // Reuse the inactive node
@@ -64,7 +63,7 @@ public:
                 front = rear = temp;
                 rear->next = front;
             } else {
-                start = front;
+                Node* start = front;
 
                 if (front->priority > priority) {
                     while (rear->next != front) {
@@ -107,13 +106,11 @@ public:
                 if (temp == front) {
                     if (front == rear) {
                         nodeCache.erase(front->data); // Remove from cache
-                        delete front;
                         front = rear = nullptr;
                     } else {
                         front = front->next;
                         rear->next = front;
                         nodeCache.erase(temp->data); // Remove from cache
-                        delete temp;
                     }
                 } else {
                     prev->next = temp->next;
@@ -121,8 +118,13 @@ public:
                         rear = prev;
                     }
                     nodeCache.erase(temp->data); // Remove from cache
-                    delete temp;
                 }
+
+                // Push the node to the inactive stack
+                temp->isActive = 0;
+                temp->next = inactiveNodes;
+                inactiveNodes = temp;
+
                 currentSize--;
                 return;
             }
@@ -140,12 +142,14 @@ public:
         }
 
         Node* temp = front;
+        string buffer;
         do {
             if (temp->isActive == 1) {
-                cout << "Data: " << temp->data << " Priority: " << temp->priority << endl;
+                buffer += "Data: " + to_string(temp->data) + " Priority: " + to_string(temp->priority) + "\n";
             }
             temp = temp->next;
         } while (temp != front);
+        cout << buffer;
     }
 
     void changeState(int data, int newState) {
@@ -176,7 +180,7 @@ public:
 };
 
 int main() {
-    CircularPriorityQueue queue(3); // Define the maximum size of the queue
+    StateManagedCircularQueue queue(3); // Define the maximum size of the queue
     queue.enqueue(1, 1);
     queue.enqueue(2, 2);
     queue.enqueue(3, 3);
