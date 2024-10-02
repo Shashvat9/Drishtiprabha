@@ -49,7 +49,7 @@
         $required_keys = ['api_key','email'];
         foreach ($required_keys as $key) {
             if (!isset($_GET[$key])) {
-                json_send(0, "Missing required POST key: $key");
+                json_send(0, "Missing required GET key: $key");
                 exit;
             }
         }
@@ -58,12 +58,11 @@
         $select_from_user_device_map_fire = mysqli_query($con,$select_from_user_device_map);
         $d_id = mysqli_fetch_assoc($select_from_user_device_map_fire)['d_id'];
 
-        $select_from_device = "SELECT device_name,date_of_manufactur FROM device WHERE d_id = '$d_id'";
+        $select_from_device = "SELECT device_name, date_of_manufactur FROM device WHERE d_id = '$d_id'";
         $select_from_device_fire = mysqli_query($con,$select_from_device);
         $data = mysqli_fetch_assoc($select_from_device_fire);
-        print_r($data);
         if($select_from_device_fire){
-            $json_send(1,$data);
+            json_send(1, $data);
         }
         else{
             json_send(1,"No data found");
