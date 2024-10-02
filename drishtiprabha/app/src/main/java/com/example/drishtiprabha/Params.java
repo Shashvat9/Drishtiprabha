@@ -2,7 +2,7 @@ package com.example.drishtiprabha;
 
 public class Params {
     protected static final String loogdTag = "shashvat";
-    protected static final String url = "https://drishtiprabha.000webhostapp.com/android_api.php";
+    protected static final String url = "https://3.108.54.205/api/v2/android_api.php";
     protected static final Integer[] success={1,6,8,10,12,14,18};
     protected static final String API_KEY ="key";
     protected static final String GET_LOC = "get_loc";
