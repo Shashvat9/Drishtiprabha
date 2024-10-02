@@ -112,7 +112,7 @@ if(!isset($_SESSION["email"]))
 
     include "myMethods.php";
 
-    $array=sendRequest(setJsonGet_Loc("UNREAD"));
+    $array=sendRequest(setJsonGet_Loc("ALL", $_SESSION["email"]));
 
     // print_r($data);
 
