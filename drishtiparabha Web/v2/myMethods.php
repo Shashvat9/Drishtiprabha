@@ -28,13 +28,14 @@
         );
     }
 
-    function setJsonGet_Loc($type)
+    function setJsonGet_Loc($type,$email)
     {
         return array(
             'get_loc' => '1',
             'json' => '{
                 "api_key":"dp123",
-                "type":"'.$type.'"
+                "type":"'.$type.'",
+                "email":"'.$email.'"
             }'
         );
     }
@@ -64,7 +65,7 @@
 
         $jsonRes = $response;
 
-        echo $jsonRes;
+        // echo $jsonRes;
 
         // $jsonAsoc = json_decode($jsonRes,true);            
         
