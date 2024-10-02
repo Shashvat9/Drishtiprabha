@@ -41,7 +41,7 @@
 
     function sendRequest($jsonArray)
     {
-        $url = 'https://3.108.54.205/api/v1/android_api.php';
+        $url = 'https://3.108.54.205/api/v2/android_api.php';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
 
@@ -63,6 +63,8 @@
         curl_close($ch);
 
         $jsonRes = $response;
+
+        echo $jsonRes;
 
         // $jsonAsoc = json_decode($jsonRes,true);            
         
