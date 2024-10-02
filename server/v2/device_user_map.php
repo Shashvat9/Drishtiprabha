@@ -5,8 +5,8 @@
         $required_keys = ['api_key', 'd_id', 'email', 'd_name'];
         foreach ($required_keys as $key) {
             if (!isset($_POST[$key])) {
-            json_send(0, "Missing required POST key: $key");
-            exit;
+                json_send(0, "Missing required POST key: $key");
+                exit;
             }
         }
 
@@ -21,9 +21,7 @@
         
         if ($api_key == $api_key_value) {
             $insert_mapping_table = "INSERT INTO user_device_map (d_id, email) VALUES ('$d_id', '$email');";
-            echo $insert_mapping_table;
             $update_mapping_table_fire = mysqli_query($con, $insert_mapping_table);
-            $update_mapping_table_fire = mysqli_query($con,$update_mapping_table);
             if($update_mapping_table_fire){
                 $update_device = "UPDATE device SET device_name = '$d_name' WHERE d_id = '$d_id';";
                 $update_device_fire = mysqli_query($con,$update_device);
@@ -36,7 +34,6 @@
             }else{
                 json_send(0,"Device ID updation failed");
             }
-
         }
     }
 
