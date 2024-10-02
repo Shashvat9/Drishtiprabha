@@ -1,7 +1,7 @@
 
 <?php
 
-    include "myMethods.php";
+    include_once "myMethods.php";
 
     // if(isset($_POST['submit']))
     // {

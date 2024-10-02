@@ -1,7 +1,7 @@
-<?php   session_start(); ?>
 <?php
+session_start();
 
-    include "myMethods.php";
+    include_once "myMethods.php";
 
     if(isset($_POST['submit']))
     {

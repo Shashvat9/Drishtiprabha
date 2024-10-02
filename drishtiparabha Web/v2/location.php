@@ -110,7 +110,7 @@ if(!isset($_SESSION["email"]))
 
     <?php
 
-    include "myMethods.php";
+    include_once "myMethods.php";
 
     $array=sendRequest(setJsonGet_Loc("ALL", $_SESSION["email"]));
 
