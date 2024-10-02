@@ -21,6 +21,7 @@
         
         if ($api_key == $api_key_value) {
             $insert_mapping_table = "INSERT INTO user_device_map (d_id, email) VALUES ('$d_id', '$email');";
+            echo $insert_mapping_table;
             $update_mapping_table_fire = mysqli_query($con, $insert_mapping_table);
             $update_mapping_table_fire = mysqli_query($con,$update_mapping_table);
             if($update_mapping_table_fire){
