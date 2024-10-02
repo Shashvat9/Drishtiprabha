@@ -13,8 +13,8 @@ if(!isset($_SESSION["email"]))
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Location</title>
-
+  <title>Add Device</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
  <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
@@ -26,7 +26,57 @@ if(!isset($_SESSION["email"]))
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
-  <style></style>
+  <style>
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: absolute;
+    right: 270px;
+    bottom: 126px;
+}
+.container h2 {
+    text-align: center; /* Center the heading */
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left; /* Align labels to the left */
+}
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left; /* Align input text to the left */
+}
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.form-group button:hover {
+    background-color: #0056b3;
+}
+    </style>
 </head>
 <body>
   <div class="container-scroller">
@@ -100,7 +150,22 @@ if(!isset($_SESSION["email"]))
           </li>  
         </ul>
       </nav>
-
+      <div class="container">
+        <h2 >Add Device</h2><br>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="device-number">Device Number</label>
+                <input type="text" id="device-number" name="device_number" required>
+            </div>
+            <div class="form-group">
+                <label for="device-name">Device Name</label>
+                <input type="text" id="device-name" name="device_name" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Device</button>
+            </div>
+        </form>
+    </div>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -112,37 +177,31 @@ if(!isset($_SESSION["email"]))
 
     include "myMethods.php";
 
-    $array=sendRequest(setJsonGet_Loc("UNREAD"));
+    // $array=sendRequest(setJsonGet_Loc("UNREAD"));
 
-    // print_r($data);
+    // // print_r($data);
 
-    foreach ($array as $key => $value) {
-      if (is_array($value)) {
-        foreach ($value as $subArray) {
-          $latitudes=0;
-          $longitudes=0;
-          foreach ($subArray as $attribute => $attributeValue) {
-            if ($attribute === 'longitude') {
-              $longitudes= $attributeValue;
-            } elseif ($attribute === 'latitude') {
-              $latitudes= $attributeValue;
-            }
-          }
-          $link = "https://www.google.com/maps/place/".$latitudes.",".$longitudes;
-          ?>
-          <div class="card">
-            <div class="card-body">
-              <form action="" method="get">
-                <label for="">I need help. This is my location:</label><br>
-                <a href="<?php echo $link; ?>" ><?php echo $link; ?></a>
-              </form>
-            </div>
-          </div>
-          <br><br>
-          <?php
-        }
-      }
-    }
+    // foreach ($array as $key => $value) {
+    //   if (is_array($value)) {
+    //     foreach ($value as $subArray) {
+    //       $latitudes=0;
+    //       $longitudes=0;
+    //       foreach ($subArray as $attribute => $attributeValue) {
+    //         if ($attribute === 'longitude') {
+    //           $longitudes= $attributeValue;
+    //         } elseif ($attribute === 'latitude') {
+    //           $latitudes= $attributeValue;
+    //         }
+    //       }
+    //       $link = "https://www.google.com/maps/place/".$latitudes.",".$longitudes;
+    //       
+    ?>
+    
+
+       <?php
+    //     }
+    //   }
+    // }
 
     // // Print the stored longitude values
     // echo "Longitudes: ";

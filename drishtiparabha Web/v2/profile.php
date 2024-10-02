@@ -27,81 +27,60 @@ if(!isset($_SESSION["email"]))
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <style>
-  .profile-container {
-    background-color: #6c757d;
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     position: absolute;
-    right: 355px;
-    bottom: 80px;
+    right: 270px;
+    bottom: 75px;
+   
 }
-
-.profile-container h2 {
-    font-size: 24px;
-    margin-bottom: 30px;
-    font-weight: 700;
-    text-align: center;
-    color: #040404;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+.container h2 {
+    text-align: center; /* Center the heading */
 }
-
 .form-group {
-    margin-bottom: 20px;
-    position: relative;
+    margin-bottom: 15px;
 }
-
-label {
-    font-weight: 500;
-    margin-bottom: 5px;
+.form-group label {
     display: block;
-    color: #fff;
-    font-size: 14px;
-    transition: 0.3s;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left; /* Align labels to the left */
 }
-
-input[type="text"], input[type="email"], input[type="tel"] {
+.form-group input {
     width: 100%;
-    padding: 12px 15px;
-    background-color: #f3f3f3;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left; /* Align input text to the left */
 }
+.form-group .center-button {
+            display: block;
+            margin: 20px auto 0 auto; /* Center the button */
+            padding: 10px 100px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group .center-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+        }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: #fff;
-}
-
-input[type="submit"] {
-    width: 100%;
-    padding: 14px 0;
-    background: linear-gradient(to right, #ff416c, #ff4b2b);
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-    text-transform: uppercase;
-}
-
-input[type="submit"]:hover {
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
-}
-
-input[type="submit"]:focus {
-    outline: none;
-}
 </style>
 </head>
 <body>
@@ -164,29 +143,38 @@ input[type="submit"]:focus {
               <span class="menu-title">Edit Profile</span>
             </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="device_mapping.php">
+              <i class="mdi mdi-account"></i>
+              <span class="menu-title">Add Device</span>
+            </a>
+            </li>
           </li>
 
           </li>  
         </ul>
       </nav>
-      <div class="profile-container">
-        <h2>Edit Profile</h2>
-        <form action="update_profile.php" method="POST">
+      <div class="container">
+        <h2 >Edit Profile</h2><br>
+        <form action="" method="post">
             <div class="form-group">
-                <label for="username">Username</label>
+            <label for="username">Username</label>
                 <input type="text" name="username" id="username" placeholder="Enter your username" required>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number</label>
+            <label for="phone">Phone Number</label>
                 <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required>
             </div>
-            <input type="submit" value="Save Changes">
+            <div class="form-group">
+                <button type="submit" class="center-button">Submit</button>
+            </div>
         </form>
     </div>
+      
 
       <!-- partial -->
       <div class="main-panel">
