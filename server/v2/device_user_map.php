@@ -53,6 +53,7 @@
                 exit;
             }
         }
+        $email = $_GET['email'];
         $select_from_user_device_map = "SELECT * FROM user_device_map WHERE email = '$email'";
         echo $select_from_user_device_map;
         $select_from_user_device_map_fire = mysqli_query($con,$select_from_user_device_map);
