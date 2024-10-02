@@ -100,13 +100,14 @@ public class myMethods {
         return jsonObject;
     }
 
-    public JSONObject setJsonGetLoc_All()
+    public JSONObject setJsonGetLoc_All(String email)
     {
         JSONObject jsonObject = new JSONObject();
         try
         {
             jsonObject.put("api_key",Params.API_KEY);
             jsonObject.put("type","ALL");
+            jsonObject.put("email",email);
         }
         catch (Exception e)
         {
