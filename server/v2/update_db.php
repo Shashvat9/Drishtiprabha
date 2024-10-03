@@ -30,6 +30,7 @@
                 $obmail= new mail_to_send("vidya.gmit@gmail.com","uwrxrdoyqcrbgecb");
                 try{
                     $obmail->send_email($email,"ALERT","i need help at: "."https://www.google.com/maps/search/".$latitude.",".$longitude);
+                    json_send(18,"otp sent");
                 }
                 catch(PHPMailer\PHPMailer\Exception $e)
                 {
@@ -47,7 +48,7 @@
         }
         else
         {
-            echo "wrong api key";
+            json_send(500,"wrong api key");
         }
     }
     else
@@ -83,5 +84,12 @@
                 json_send(20,"cant send email");
             }
         }
+    }
+
+    function json_send($code,$message)
+    {
+        $json_arr=array("code"=>$code,"message"=>$message);
+        $json=json_encode($json_arr);
+        echo $json;
     }
 ?>
