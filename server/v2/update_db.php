@@ -30,12 +30,12 @@
                 $obmail= new mail_to_send("vidya.gmit@gmail.com","uwrxrdoyqcrbgecb");
                 try{
                     $obmail->send_email($email,"ALERT","i need help at: "."https://www.google.com/maps/search/".$latitude.",".$longitude);
-                    json_send(18,"otp sent");
+                    json_send(18,"email send");
                 }
                 catch(PHPMailer\PHPMailer\Exception $e)
                 {
                     $errorArr = explode(":",$e->getMessage());
-                    if($errorArr[0]=="Invalid address")
+                    if($errorArr[0]=="Invalid address ".$email)
                     {
                         json_send(19,"wrong email");
                     }
