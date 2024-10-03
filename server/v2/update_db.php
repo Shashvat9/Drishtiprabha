@@ -64,24 +64,24 @@
         return $data;
     }
 
-    // function send_mail_otp($email)
-    // {
-    //     $obmail= new mail_to_send("vidya.gmit@gmail.com","uwrxrdoyqcrbgecb");
-    //     try{
-    //         $obmail->send_email($email,"ALERT","i need help at: "."https://www.google.com/maps/search/".$latitude.",".$longitude);
-    //         json_send(18,"otp sent");
-    //     }
-    //     catch(PHPMailer\PHPMailer\Exception $e)
-    //     {
-    //         $errorArr = explode(":",$e->getMessage());
-    //         if($errorArr[0]=="Invalid address")
-    //         {
-    //             json_send(19,"wrong email");
-    //         }
-    //         else
-    //         {
-    //             json_send(20,"cant send email");
-    //         }
-    //     }
-    // }
+    function send_mail_otp($email)
+    {
+        $obmail= new mail_to_send("vidya.gmit@gmail.com","uwrxrdoyqcrbgecb");
+        try{
+            $obmail->send_email($email,"ALERT","i need help at: "."https://www.google.com/maps/search/".$latitude.",".$longitude);
+            json_send(18,"otp sent");
+        }
+        catch(PHPMailer\PHPMailer\Exception $e)
+        {
+            $errorArr = explode(":",$e->getMessage());
+            if($errorArr[0]=="Invalid address")
+            {
+                json_send(19,"wrong email");
+            }
+            else
+            {
+                json_send(20,"cant send email");
+            }
+        }
+    }
 ?>
