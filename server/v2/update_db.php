@@ -35,13 +35,14 @@
                 catch(PHPMailer\PHPMailer\Exception $e)
                 {
                     $errorArr = explode(":",$e->getMessage());
-                    if($errorArr[0]=="Invalid address ".$email)
+                    if($errorArr[0]=="Invalid address")
                     {
-                        json_send(19,"wrong email");
+                        json_send(19,"wrong email ".$email);
                     }
                     else
                     {
-                        json_send(20,"cant send email");
+                        json_send(20,"cant send email ");
+                        print_r($e->getMessage());
                     }
                 }
             }
