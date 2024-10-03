@@ -5,6 +5,7 @@
   #include <UniversalTelegramBot.h>
   #include <ArduinoJson.h>
   #include <WiFiClientSecure.h>
+  // #include <WifiLocation.h>
 
   //for giolocation
 
@@ -27,7 +28,7 @@ const char* password = "hithere.";
 const String serverName = "https://3.108.54.205/api/v2/update_db.php";
 const char* googleApiKey = "AIzaSyC-iSJulKT-gdv4JF3_hc3UZfYlRWWh6w4";
 String apiKeyValue = "dp123";
-String d_id = "2"
+String d_id = "2";
 
 #endif
 WifiLocation location (googleApiKey);
@@ -40,7 +41,7 @@ WifiLocation location (googleApiKey);
 #define CHAT_ID "5511379301" //shashvat
 // #define CHAT_ID "1638809558" //aryan
 
-#define CHAT_ID ""
+// #define CHAT_ID ""
 // #define CHAT_ID ""
 
 X509List cert(TELEGRAM_CERTIFICATE_ROOT);
