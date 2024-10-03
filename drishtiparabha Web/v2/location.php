@@ -82,17 +82,18 @@ if(!isset($_SESSION["email"]))
             <a class="nav-link" href="location.php">
               <i class="mdi mdi-google-maps"></i>
               <span class="menu-title">Location</span>
-            </a>
-            <li class="nav-item">
-              <a class="nav-link" href="profile.php">
-              <i class="mdi mdi-account"></i>
-              <span class="menu-title">Edit Profile</span>
-            </a>
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="device_mapping.php">
               <i class="mdi mdi-account"></i>
               <span class="menu-title">Add Device</span>
+            </a>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="profile.php">
+              <i class="mdi mdi-account"></i>
+              <span class="menu-title">Edit Profile</span>
+            </a> -->
             </a>
             </li>
           </li>

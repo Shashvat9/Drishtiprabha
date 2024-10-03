@@ -2,17 +2,17 @@
     $apiKey = "key";
 
 
-    function setJsonValidate ($email,$password)
-    {
-        return array(
-            'validate' => '1',
-            'json' => '{
-                "api_key":"dp123",
-                "email":"'.$email.'",
-                "password":"'.$password.'"
-            }'
-        );
-    }
+    // function setJsonValidate ($email,$password)
+    // {
+    //     return array(
+    //         'validate' => '1',
+    //         'json' => '{
+    //             "api_key":"dp123",
+    //             "email":"'.$email.'",
+    //             "password":"'.$password.'"
+    //         }'
+    //     );
+    // }
 
     function setJsonAdd_User ($name,$mobile,$email,$password)
     {
