@@ -71,13 +71,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/1.css">
+  <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <style>
-       /* .container {
-    position: relative;
-  }  */
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px 20px 40px ;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: absolute;
+    right: 250px;
+    bottom: 200px;
+    
+   
+  }
+  .container h2 {
+    text-align: center; /* Center the heading */
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left; /* Align labels to the left */
+  }
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left; /* Align input text to the left */
+  }
+  .form-group {
+    text-align: center; /* Center the button horizontally */
+  }
+  
+  .small-center-button {
+    width: 250px; /* Adjust the width as needed */
+    padding: 5px; /* Adjust padding as needed */
+    font-size: 20px; /* Adjust font size as needed */
+    background-color: #007bff; /* Optional: Add background color */
+    border: none; /* Optional: Add border */
+    border-radius: 4px; /* Optional: Add border radius */
+    color: #fff; /* Optional: Add text color */
+    cursor: pointer; /* Optional: Add cursor pointer */
+    display: inline-block; /* Ensure the button is an inline-block element */
+    margin: 10px auto 0 auto; /* Center the button */
+  }
+  
+  .small-center-button:hover {
+    background-color: #0056b3; /* Optional: Add hover background color */
+  }
+  a.small-center-button {
+    text-decoration: none; /* Remove underline */
+    /* color: inherit;   */
+  }
 
   .add-device-form {
     display: none; /* Hide the form initially */
@@ -104,8 +163,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
           <a class="navbar-brand brand-logo" href="location.php"><img src="images/logo.svg" alt="logo"/></a>
-          <!-- logo  -->
-          <a class="navbar-brand brand-logo-mini" href="Home.php"><img src="images/Logo.svg" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -150,17 +207,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a class="nav-link" href="location.php">
               <i class="mdi mdi-google-maps"></i>
               <span class="menu-title">Location</span>
-            </a>
-            <li class="nav-item">
-              <a class="nav-link" href="profile.php">
-              <i class="mdi mdi-account"></i>
-              <span class="menu-title">Edit Profile</span>
-            </a>
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="device_mapping.php">
               <i class="mdi mdi-account"></i>
               <span class="menu-title">Add Device</span>
+            </a>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="profile.php">
+              <i class="mdi mdi-account"></i>
+              <span class="menu-title">Edit Profile</span>
+            </a> -->
             </a>
             </li>
           </li>
@@ -191,8 +249,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  <div class="card mt-6">
     <div class="card-body  ">
       <h5 class="card-title text-center">Device Information</h5>
-      <p class="card-text"><strong>Device Name:</strong> <?php echo "hii" ?></p>
-      <p class="card-text"><strong>Date of Manufacture:</strong> <?php echo "Hii" ?></p>
+      <p class="card-text"><strong>Device Name:</strong> <?php echo "3" ?></p>
+      <p class="card-text"><strong>Date of Manufacture:</strong> <?php echo "25-9-2024" ?></p>
       <button class="btn btn-primary">Edit</button>
       <button class="btn btn-danger">Delete</button>
       <button class="btn btn-success" id="add-device-btn">Add Device</button>
