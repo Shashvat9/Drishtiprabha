@@ -29,8 +29,11 @@ def text_to_speech(captions):
 while True:
     frame = picam2.capture_array()
 
+    # Convert the frame to RGB format
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGRA2BGR)
+    
     # Run YOLOv8 object detection on the frame
-    results = model(frame)
+    results = model(frame_rgb)
 
     # Generate captions from detections
     captions = []
@@ -44,7 +47,7 @@ while True:
         text_to_speech(captions)
 
     # Display the frame with YOLOv8 detections
-    cv2.imshow("YOLOv8 Detection", frame)
+    cv2.imshow("YOLOv8 Detection", frame_rgb)
 
     # Press 'q' to exit the loop
     if cv2.waitKey(1) & 0xFF == ord('q'):
