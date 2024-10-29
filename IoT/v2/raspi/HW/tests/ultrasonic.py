@@ -29,12 +29,13 @@ def measure_distance():
 
   while GPIO.input(ECHO) == 1:
     pulse_end = time.time()
+    
   if pulse_start and pulse_end:
     pulse_duration = pulse_end - pulse_start
     distance = (pulse_duration * 34300) / 2  # Corrected calculation
     return round(distance, 2)
   else:
-    return None # Indicate timeout or error
+    return "Error" # Indicate timeout or error
   
   
 def main():
