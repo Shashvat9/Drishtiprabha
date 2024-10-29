@@ -57,6 +57,7 @@ def triple_press():
 def main():
     try:
         while True:
+            print("Waiting for button press...")
             if press_and_hold_5_seconds():
                 print("Detected: Press and hold for 5 seconds")
             elif double_press():
