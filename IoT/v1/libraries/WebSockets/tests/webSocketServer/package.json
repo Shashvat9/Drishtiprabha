@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Links2004/arduinoWebSockets",
   "dependencies": {
-    "websocket": "^1.0.18"
+    "websocket": "^1.0.18",
+    "webSocketServer": "file:"
   }
 }
