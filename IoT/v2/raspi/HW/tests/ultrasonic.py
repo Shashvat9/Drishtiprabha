@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO 
 import time
 
 #board setup
@@ -55,3 +55,7 @@ def main():
     
   except requests.exceptions.RequestException as e:
       print(f"Error accessing API: {e}")
+      
+
+if __name__ == "__main__":
+  main()
