@@ -8,6 +8,10 @@ GPIO.setmode(GPIO.BOARD)
 TEST_BUTTON_PIN = 11  # Change to an available GPIO pin
 GPIO.setup(TEST_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+button_states = ["HOLD","double","triple"]
+
+currunt_status = 0
+
 def press_and_hold_5_seconds():
     start_time = None
     while True:
@@ -15,7 +19,7 @@ def press_and_hold_5_seconds():
             if start_time is None:
                 start_time = time.time()
             elif time.time() - start_time >= 5:
-                print("Button pressed and held for 5 seconds!")
+                # print("Button pressed and held for 5 seconds!")
                 return True
         else:
             start_time = None
@@ -34,7 +38,7 @@ def double_press():
                     time.sleep(0.1)  # Wait for button release
         time.sleep(0.1)
     if press_count == 2:
-        print("Button double pressed!")
+        # print("Button double pressed!")
         return True
     return False
 
@@ -50,14 +54,13 @@ def triple_press():
                     time.sleep(0.1)  # Wait for button release
         time.sleep(0.1)
     if press_count == 3:
-        print("Button triple pressed!")
+        # print("Button triple pressed!")
         return True
     return False
 
 def main():
     try:
         while True:
-            print("Waiting for button press...")
             if press_and_hold_5_seconds():
                 print("Detected: Press and hold for 5 seconds")
             elif double_press():
