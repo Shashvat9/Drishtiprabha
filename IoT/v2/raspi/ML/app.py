@@ -2,7 +2,7 @@ from ultralytics import YOLO
 from gtts import gTTS
 import os
 import cv2
-# from libcamera import controls
+from libcamera import controls
 from picamera2 import Picamera2, Preview
 
 # Load YOLOv8 model (Nano version for testing)
