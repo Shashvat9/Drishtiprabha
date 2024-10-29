@@ -47,7 +47,7 @@ def main():
       distance = measure_distance()
       print(f"Distance: {distance} cm")
 
-      #time.sleep(0.5) # Adjust delay between measurements
+      time.sleep(0.5) # Adjust delay between measurements
 
   except KeyboardInterrupt:
     GPIO.cleanup()
