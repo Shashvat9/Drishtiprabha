@@ -39,11 +39,12 @@ def measure_distance():
   
 def main():
   print("Waiting for sensor to settle")
-  #time.sleep(2) # Initial settling time
+  time.sleep(2) # Initial settling time
 
 
   try:
     while True:
+      print("Measuring distance")
       distance = measure_distance()
       print(f"Distance: {distance} cm")
 
