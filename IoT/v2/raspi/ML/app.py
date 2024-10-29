@@ -2,16 +2,12 @@ from ultralytics import YOLO
 from gtts import gTTS
 import os
 import cv2
-from libcamera import controls
-from picamera2 import Picamera2, Preview
 
 # Load YOLOv8 model (Nano version for testing)
 model = YOLO('yolov8n.pt') 
 
-# Initialize the camera
-picam2 = Picamera2()
-picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
-picam2.start()
+# Initialize the camera using OpenCV
+cap = cv2.VideoCapture(0)  # 0 is the default camera
 
 def text_to_speech(captions):
     # Convert captions to a single string
@@ -27,10 +23,13 @@ def text_to_speech(captions):
     os.system("mpg321 caption_audio.mp3") 
 
 while True:
-    frame = picam2.capture_array()
+    ret, frame = cap.read()
+    if not ret:
+        print("Failed to capture image")
+        break
 
     # Convert the frame to RGB format
-    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGRA2BGR)
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     
     # Run YOLOv8 object detection on the frame
     results = model(frame_rgb)
@@ -54,5 +53,5 @@ while True:
         break
 
 # Release resources
-picam2.stop()
+cap.release()
 cv2.destroyAllWindows()
