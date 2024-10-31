@@ -9,10 +9,6 @@ GPS_BAUD_RATE = 9600
 # Initialize GPIO
 GPIO.setmode(GPIO.BOARD)
 
-# GPS Pin Connections (BOARD mode)
-GPS_TXD = 8  # Example pin, change to your specific configuration
-GPS_RXD = 10  # Example pin, change to your specific configuration
-
 def parse_nmea_sentence(sentence):
     parts = sentence.split(',')
     if parts[0] == "$GPGGA":
@@ -48,11 +44,9 @@ def initialize_gps():
 def read_gps_data(ser):
     if ser and ser.isOpen():
         try:
-            ser.write(b"AT+CGNSINF\r")
-            time.sleep(1)
-            response = ser.read(ser.inWaiting()).decode()
-            for line in response.split('\n'):
-                parse_nmea_sentence(line.strip())
+            line = ser.readline().decode('ascii', errors='ignore').strip()
+            if line.startswith('$'):
+                parse_nmea_sentence(line)
         except Exception as e:
             print(f"Error reading GPS data: {e}")
     else:
@@ -64,7 +58,7 @@ def main():
         try:
             while True:
                 read_gps_data(ser)
-                time.sleep(2)  # Adjust delay as needed
+                time.sleep(1)  # Adjust delay as needed
         except KeyboardInterrupt:
             print("Terminating GPS test")
         finally:
