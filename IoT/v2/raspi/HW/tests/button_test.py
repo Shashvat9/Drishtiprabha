@@ -138,7 +138,10 @@ def main():
         #     print("Button not clicked")
         #     time.sleep(0.1)
         
-    print("Press count: ", button_press_count())
+    # print("Press count: ", button_press_count())
+    while True:
+        print("Button press count: ", button_press_count())
+        time.sleep(0.1)
 
 if __name__ == "__main__":
     main()
