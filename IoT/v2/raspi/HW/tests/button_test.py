@@ -23,15 +23,17 @@ def button_click():
     # if button is pressed adn released in 0.5 seconds it will be button click
     
     if is_button_pressed():
-        time.sleep(0.2)
+        time.sleep(0.1)
         if button_released():
             return True
     return False
 
-def button_click_count():
+def button_click_count(max_count=3, timeout=0.2):
     button_click_count_var = 0
     last_click_time = None
-    while True:
+    start_time = time.time()
+    
+    while button_click_count_var < max_count and (time.time() - start_time) < timeout:
         if button_click():
             current_time = time.time()
             if last_click_time is None or current_time - last_click_time > 0.3:
@@ -39,10 +41,9 @@ def button_click_count():
             else:
                 button_click_count_var += 1
             last_click_time = current_time
-            time.sleep(0.1)
-            return button_click_count_var
-        else:
-            time.sleep(0.1)
+        time.sleep(0.1)
+    
+    return button_click_count_var
     
         
 
