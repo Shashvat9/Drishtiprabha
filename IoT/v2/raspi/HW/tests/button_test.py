@@ -43,118 +43,72 @@ def button_click_count(timeout=1.5):
             break
         time.sleep(0.05)
     return click_count
+
+def press_and_hold():
+    # if button is pressed for 2 seconds it will be press and hold
     
-        
+    start_time = time.time()
+    while True:
+        if is_button_pressed():
+            if time.time() - start_time >= 2:
+                return True
+        else:
+            start_time = time.time()
+        time.sleep(0.1)
+    return False
+    
+    
+def detect_button_event():
+    click_count = 0
+    start_time = time.time()
+    timeout = 1.5  # Time window to detect multiple clicks
+    hold_time_threshold = 2  # Time threshold for press and hold
 
+    while time.time() - start_time < timeout:
+        if is_button_pressed():
+            press_start = time.time()
+            while is_button_pressed():
+                time.sleep(0.05)
+                if time.time() - press_start >= hold_time_threshold:
+                    print("Button Press and Hold")
+                    return "HOLD"
+            click_count += 1
+            time.sleep(0.1)  # Debounce
+        time.sleep(0.05)
 
-# def button_press_count():
-#     press_count = 0
-#     last_press_time = None
-#     while press_count < 3:
-#         if is_button_pressed():
-#             if last_press_time is None or time.time() - last_press_time > 0.5:
-#                 press_count += 1
-#                 last_press_time = time.time()
-#                 while is_button_pressed():
-#                     time.sleep(0.1)  # Wait for button release
-#         time.sleep(0.1)
-#     return press_count
-
-# def press_and_hold_5_seconds():
-#     start_time = None
-#     while True:
-#         if GPIO.input(TEST_BUTTON_PIN) == GPIO.LOW:
-#             if start_time is None:
-#                 start_time = time.time()
-#             elif time.time() - start_time >= 5:
-#                 # print("Button pressed and held for 5 seconds!")
-#                 return True
-#         else:
-#             start_time = None
-#         time.sleep(0.1)
-#     return False
-
-# def double_press():
-#     press_count = 0
-#     last_press_time = None
-#     while press_count < 2:
-#         if GPIO.input(TEST_BUTTON_PIN) == GPIO.LOW:
-#             if last_press_time is None or time.time() - last_press_time > 0.5:
-#                 press_count += 1
-#                 last_press_time = time.time()
-#                 while GPIO.input(TEST_BUTTON_PIN) == GPIO.LOW:
-#                     time.sleep(0.1)  # Wait for button release
-#         time.sleep(0.1)
-#     if press_count == 2:
-#         # print("Button double pressed!")
-#         return True
-#     return False
-
-# def triple_press():
-#     press_count = 0
-#     last_press_time = None
-#     while press_count < 3:
-#         if GPIO.input(TEST_BUTTON_PIN) == GPIO.LOW:
-#             if last_press_time is None or time.time() - last_press_time > 0.5:
-#                 press_count += 1
-#                 last_press_time = time.time()
-#                 while GPIO.input(TEST_BUTTON_PIN) == GPIO.LOW:
-#                     time.sleep(0.1)  # Wait for button release
-#         time.sleep(0.1)
-#     if press_count == 3:
-#         # print("Button triple pressed!")
-#         return True
-#     return False
+    if click_count == 1:
+        print("Button Single Click")
+        return "SINGLE"
+    elif click_count == 2:
+        print("Button Double Click")
+        return "DOUBLE"
+    elif click_count == 3:
+        print("Button Triple Click")
+        return "TRIPLE"
+    else:
+        print("No Button Click Detected")
+        return "NONE"
 
 def main():
-    # try:
-    #     while True:
-    #         if press_and_hold_5_seconds():
-    #             print("Detected: Press and hold for 5 seconds")
-    #         elif double_press():
-    #             print("Detected: Double press")
-    #         elif triple_press():
-    #             print("Detected: Triple press")
-    #         time.sleep(1)  # Delay before next detection cycle
-    # except KeyboardInterrupt:
-    #     pass
-    # finally:
-    #     GPIO.cleanup()
-    # while True:
-        # if(is_button_pressed()):
-        #     print("Button pressed")
-        #     time.sleep(0.1)
-        # elif(button_released()):
-        #     print("Button released")
-        #     time.sleep(0.1)
-        # else:
-        #     print("Button not pressed")
-        #     time.sleep(0.1)
+    
+    while True:
+        # print("Button press count: ", button_click_count())
+        # time.sleep(0.1)
         
-        # if(button_click()):
-        #     print("Button clicked")
+        # if(button_click_count() == 1):
+        #     print("Button clicked once")
+        #     time.sleep(0.1)
+        # elif(button_click_count() == 2):
+        #     print("Button clicked twice")
+        #     time.sleep(0.1)
+        # elif(button_click_count() == 3):
+        #     print("Button clicked thrice")
         #     time.sleep(0.1)
         # else:
         #     print("Button not clicked")
         #     time.sleep(0.1)
         
-    # print("Press count: ", button_press_count())
-    while True:
-        # print("Button press count: ", button_click_count())
-        # time.sleep(0.1)
-        
-        if(button_click_count() == 1):
-            print("Button clicked once")
-            time.sleep(0.1)
-        elif(button_click_count() == 2):
-            print("Button clicked twice")
-            time.sleep(0.1)
-        elif(button_click_count() == 3):
-            print("Button clicked thrice")
-            time.sleep(0.1)
-        else:
-            print("Button not clicked")
-            time.sleep(0.1)
+        print(detect_button_event())
 
 if __name__ == "__main__":
     main()
