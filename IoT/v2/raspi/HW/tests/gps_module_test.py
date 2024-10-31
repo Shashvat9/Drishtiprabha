@@ -13,6 +13,7 @@ def parse_nmea_sentence(sentence):
     parts = sentence.split(',')
     if parts[0] == "$GPGGA":
         try:
+            # Existing parsing code for $GPGGA
             lat = parts[2]
             lat_dir = parts[3]
             lon = parts[4]
@@ -24,13 +25,25 @@ def parse_nmea_sentence(sentence):
                     lat = -lat
                 if lon_dir == 'W':
                     lon = -lon
-                print(f"Latitude: {lat} {lat_dir}, Longitude: {lon} {lon_dir}")
+                print(f"Latitude: {lat}°, Longitude: {lon}°")
             else:
                 print("No GPS fix")
         except ValueError:
-            print("Error parsing NMEA sentence")
+            print("Error parsing $GPGGA sentence")
     else:
-        print("Unsupported NMEA sentence")
+        # Print unsupported sentences for debugging
+        print(f"Unsupported NMEA sentence: {sentence}")
+
+# def read_gps_data(ser):
+#     if ser and ser.isOpen():
+#         try:
+#             line = ser.readline().decode('ascii', errors='ignore').strip()
+#             if line.startswith('$'):
+#                 parse_nmea_sentence(line)
+#         except Exception as e:
+#             print(f"Error reading GPS data: {e}")
+#     else:
+#         print("Serial port not open")
 
 def initialize_gps():
     try:
