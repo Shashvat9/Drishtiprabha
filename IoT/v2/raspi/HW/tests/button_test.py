@@ -140,8 +140,21 @@ def main():
         
     # print("Press count: ", button_press_count())
     while True:
-        print("Button press count: ", button_click_count())
-        time.sleep(0.1)
+        # print("Button press count: ", button_click_count())
+        # time.sleep(0.1)
+        
+        if(button_click_count() == 1):
+            print("Button clicked once")
+            time.sleep(0.1)
+        elif(button_click_count() == 2):
+            print("Button clicked twice")
+            time.sleep(0.1)
+        elif(button_click_count() == 3):
+            print("Button clicked thrice")
+            time.sleep(0.1)
+        else:
+            print("Button not clicked")
+            time.sleep(0.1)
 
 if __name__ == "__main__":
     main()
