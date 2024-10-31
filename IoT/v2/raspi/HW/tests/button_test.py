@@ -21,10 +21,24 @@ def button_released():
 def button_click():
     # if button is pressed adn released in 0.5 seconds it will be button click
     if is_button_pressed():
-        time.sleep(0.5)
+        time.sleep(0.2)
         if button_released():
             return True
     return False
+
+
+def button_press_count():
+    press_count = 0
+    last_press_time = None
+    while press_count < 3:
+        if is_button_pressed():
+            if last_press_time is None or time.time() - last_press_time > 0.5:
+                press_count += 1
+                last_press_time = time.time()
+                while is_button_pressed():
+                    time.sleep(0.1)  # Wait for button release
+        time.sleep(0.1)
+    return press_count
 
 
 # def button_press_count():
@@ -111,12 +125,14 @@ def main():
         #     print("Button not pressed")
         #     time.sleep(0.1)
         
-        if(button_click()):
-            print("Button clicked")
-            time.sleep(0.1)
-        else:
-            print("Button not clicked")
-            time.sleep(0.1)
+        # if(button_click()):
+        #     print("Button clicked")
+        #     time.sleep(0.1)
+        # else:
+        #     print("Button not clicked")
+        #     time.sleep(0.1)
+        
+        print("Press count: ", button_press_count())
 
 if __name__ == "__main__":
     main()
