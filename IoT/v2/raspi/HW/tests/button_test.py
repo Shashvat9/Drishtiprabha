@@ -40,9 +40,9 @@ def button_click_count():
                 button_click_count_var += 1
             last_click_time = current_time
             time.sleep(0.1)
+            return button_click_count_var
         else:
-            button_click_count_var = 0
-        return button_click_count_var
+            time.sleep(0.1)
     
         
 
