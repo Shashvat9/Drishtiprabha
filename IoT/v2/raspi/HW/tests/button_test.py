@@ -22,8 +22,7 @@ def button_released():
 
 def button_click():
     # if button is pressed adn released in 0.5 seconds it will be button click
-    global button_click_count
-    button_click_count = 0
+    
     if is_button_pressed():
         time.sleep(0.2)
         if button_released():
@@ -32,6 +31,7 @@ def button_click():
 
 def button_press_count():
     global button_click_count
+    button_click_count = 0
     if button_click():
         button_click_count += 1
         while is_button_pressed():
