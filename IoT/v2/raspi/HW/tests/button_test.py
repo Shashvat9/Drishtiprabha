@@ -28,22 +28,21 @@ def button_click():
             return True
     return False
 
-def button_click_count(max_count=3, timeout=0.2):
-    button_click_count_var = 0
-    last_click_time = None
+def button_click_count(timeout=1.0):
+    click_count = 0
     start_time = time.time()
-    
-    while button_click_count_var < max_count and (time.time() - start_time) < timeout:
-        if button_click():
-            current_time = time.time()
-            if last_click_time is None or current_time - last_click_time > 0.3:
-                button_click_count_var = 1
-            else:
-                button_click_count_var += 1
-            last_click_time = current_time
-        time.sleep(0.1)
-    
-    return button_click_count_var
+
+    while True:
+        if is_button_pressed():
+            # Wait for button release
+            while is_button_pressed():
+                time.sleep(0.05)
+            click_count += 1
+            time.sleep(0.1)  # Debounce
+        if time.time() - start_time >= timeout:
+            break
+        time.sleep(0.05)
+    return click_count
     
         
 
