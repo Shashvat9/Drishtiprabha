@@ -31,7 +31,6 @@ def button_click():
 
 def button_press_count():
     global button_click_count
-    button_click_count = 0
     if button_click():
         button_click_count += 1
         while is_button_pressed():
