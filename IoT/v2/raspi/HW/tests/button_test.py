@@ -120,7 +120,7 @@ def main():
     #     pass
     # finally:
     #     GPIO.cleanup()
-    while True:
+    # while True:
         # if(is_button_pressed()):
         #     print("Button pressed")
         #     time.sleep(0.1)
@@ -138,7 +138,7 @@ def main():
         #     print("Button not clicked")
         #     time.sleep(0.1)
         
-        print("Press count: ", button_press_count())
+    print("Press count: ", button_press_count())
 
 if __name__ == "__main__":
     main()
