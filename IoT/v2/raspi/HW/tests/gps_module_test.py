@@ -10,8 +10,8 @@ GPS_BAUD_RATE = 9600
 GPIO.setmode(GPIO.BOARD)
 
 # GPS Pin Connections (BOARD mode)
-GPS_TXD = 32  # Example pin, change to your specific configuration
-GPS_RXD = 33  # Example pin, change to your specific configuration
+GPS_TXD = 8  # Example pin, change to your specific configuration
+GPS_RXD = 10  # Example pin, change to your specific configuration
 
 def parse_nmea_sentence(sentence):
     parts = sentence.split(',')

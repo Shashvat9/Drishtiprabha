@@ -108,7 +108,7 @@ def main():
         #     print("Button not clicked")
         #     time.sleep(0.1)
         
-        print(detect_button_event())
+        detect_button_event()
 
 if __name__ == "__main__":
     main()
