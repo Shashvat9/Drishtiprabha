@@ -28,7 +28,7 @@ def button_click():
             return True
     return False
 
-def button_click_count(timeout=1.0):
+def button_click_count(timeout=1.5):
     click_count = 0
     start_time = time.time()
 
