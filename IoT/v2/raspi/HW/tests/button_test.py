@@ -12,7 +12,6 @@ button_states = ["HOLD","double","triple"]
 
 currunt_status = 0
 
-button_click_count = 0
 
 def is_button_pressed():
     return GPIO.input(TEST_BUTTON_PIN) == GPIO.LOW
@@ -29,18 +28,23 @@ def button_click():
             return True
     return False
 
-def button_press_count():
-    press_count = 0
-    last_press_time = None
-    while press_count < 3:
-        if is_button_pressed():
-            if last_press_time is None or time.time() - last_press_time > 0.5:
-                press_count += 1
-                last_press_time = time.time()
-                while is_button_pressed():
-                    time.sleep(0.1)  # Wait for button release
-        time.sleep(0.1)
-    return press_count
+def button_click_count():
+    button_click_count_var = 0
+    last_click_time = None
+    while True:
+        if button_click():
+            current_time = time.time()
+            if last_click_time is None or current_time - last_click_time > 0.3:
+                button_click_count_var = 1
+            else:
+                button_click_count_var += 1
+            last_click_time = current_time
+            time.sleep(0.1)
+        else:
+            button_click_count_var = 0
+        return button_click_count_var
+    
+        
 
 
 # def button_press_count():
