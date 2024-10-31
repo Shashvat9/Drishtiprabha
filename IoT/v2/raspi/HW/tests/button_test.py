@@ -18,6 +18,15 @@ def is_button_pressed():
 def button_released():
     return GPIO.input(TEST_BUTTON_PIN) == GPIO.HIGH
 
+def button_click():
+    # if button is pressed adn released in 0.5 seconds it will be button click
+    if is_button_pressed():
+        time.sleep(0.5)
+        if button_released():
+            return True
+    return False
+
+
 # def button_press_count():
 #     press_count = 0
 #     last_press_time = None
@@ -92,14 +101,21 @@ def main():
     # finally:
     #     GPIO.cleanup()
     while True:
-        if(is_button_pressed()):
-            print("Button pressed")
-            time.sleep(0.1)
-        elif(button_released()):
-            print("Button released")
+        # if(is_button_pressed()):
+        #     print("Button pressed")
+        #     time.sleep(0.1)
+        # elif(button_released()):
+        #     print("Button released")
+        #     time.sleep(0.1)
+        # else:
+        #     print("Button not pressed")
+        #     time.sleep(0.1)
+        
+        if(button_click()):
+            print("Button clicked")
             time.sleep(0.1)
         else:
-            print("Button not pressed")
+            print("Button not clicked")
             time.sleep(0.1)
 
 if __name__ == "__main__":
