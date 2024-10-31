@@ -140,7 +140,7 @@ def main():
         
     # print("Press count: ", button_press_count())
     while True:
-        print("Button press count: ", button_press_count())
+        print("Button press count: ", button_click_count())
         time.sleep(0.1)
 
 if __name__ == "__main__":
