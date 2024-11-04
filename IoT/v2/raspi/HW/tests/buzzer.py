@@ -17,7 +17,7 @@ class Buzzer:
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    buzzer = Buzzer(pin=37, duration=1)
+    buzzer = Buzzer(pin=37, duration=2)
     
     try:
         while True:
