@@ -33,6 +33,7 @@ ultrasonic_pin_echo = 16
 
 
 try:
+    print(api_key_from_env)
     buzzer = Buzzer(pin=buzzer_pin, frequency=1500)
     button_click_count = 0
     button = ButtonHandler(pin=button_pin)
