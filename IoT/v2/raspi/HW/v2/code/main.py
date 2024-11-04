@@ -1,4 +1,7 @@
 import sys
+import os
+import time
+
 # Add the utils to the Python path
 sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
 
@@ -6,10 +9,9 @@ from buzzer import Buzzer
 from button import ButtonHandler
 from ultrasonic import Ultrasonic
 from request_ec2 import EC2Request
-import time
 import RPi.GPIO as GPIO
 from dotenv import load_dotenv
-import os
+
 
 
 
