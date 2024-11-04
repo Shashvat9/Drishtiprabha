@@ -41,12 +41,12 @@ class Ultrasonic:
     def cleanup(self):
         GPIO.cleanup()
         
-# if __name__ == "__main__":
-#     ultrasonic_sensor = Ultrasonic()
-#     try:
-#         while True:
-#             distance = ultrasonic_sensor.measure_distance()
-#             print(f"Distance: {distance} cm")
-#             time.sleep(1)
-#     except KeyboardInterrupt:
-#         ultrasonic_sensor.cleanup()
+if __name__ == "__main__":
+    ultrasonic_sensor = Ultrasonic()
+    try:
+        while True:
+            distance = ultrasonic_sensor.measure_distance()
+            print(f"Distance: {distance} cm")
+            time.sleep(1)
+    except KeyboardInterrupt:
+        ultrasonic_sensor.cleanup()
