@@ -1,3 +1,6 @@
+# Add the utils to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
+
 from buzzer import Buzzer
 from button import ButtonHandler
 from ultrasonic import Ultrasonic
@@ -8,8 +11,6 @@ from dotenv import load_dotenv
 import os
 import sys
 
-# Add the utils to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
 
 
 # load environment variables
