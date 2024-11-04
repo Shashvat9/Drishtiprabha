@@ -20,4 +20,4 @@ if __name__ == "__main__":
     buzzer = Buzzer(pin=37, duration=0.5)
     while True:
         buzzer.buzz()
-        buzzer.cleanup()
+        # buzzer.cleanup()
