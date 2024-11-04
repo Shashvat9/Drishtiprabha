@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 import sys
 
-# Add the directory containing buzzer.py to the Python path
+# Add the utils to the Python path
 sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
 
 
