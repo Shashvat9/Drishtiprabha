@@ -1,3 +1,4 @@
+import sys
 # Add the utils to the Python path
 sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
 
@@ -9,7 +10,7 @@ import time
 import RPi.GPIO as GPIO
 from dotenv import load_dotenv
 import os
-import sys
+
 
 
 
