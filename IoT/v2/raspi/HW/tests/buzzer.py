@@ -17,7 +17,16 @@ class Buzzer:
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    buzzer = Buzzer(pin=37, duration=0.5)
-    while True:
-        buzzer.buzz()
-        # buzzer.cleanup()
+    buzzer = Buzzer(pin=37, duration=1)
+    
+    try:
+        while True:
+            buzzer.buzz()
+    except KeyboardInterrupt:
+        buzzer.cleanup()
+        
+            
+    # while True:
+    #     buzzer.buzz()
+        
+    # # buzzer.cleanup()
