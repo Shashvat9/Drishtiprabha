@@ -1,21 +1,22 @@
 import RPi.GPIO as GPIO
 import time
 
-class BuzzerTest:
-    def __init__(self, pin=37):
+class Buzzer:
+    def __init__(self, pin=37, duration=1):
         self.pin = pin
+        self.duration = duration
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.pin, GPIO.OUT)
     
-    def test_buzzer(self, duration=1):
+    def buzz(self):
         GPIO.output(self.pin, GPIO.HIGH)
-        time.sleep(duration)
+        time.sleep(self.duration)
         GPIO.output(self.pin, GPIO.LOW)
     
     def cleanup(self):
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    buzzer = BuzzerTest()
-    buzzer.test_buzzer(duration=2)
+    buzzer = Buzzer(pin=37, duration=2)
+    buzzer.buzz()
     buzzer.cleanup()
