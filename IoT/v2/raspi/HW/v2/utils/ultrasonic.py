@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-class UltrasonicSensor:
+class Ultrasonic:
     def __init__(self, trig_pin=15, echo_pin=16):
         self.TRIG = trig_pin
         self.ECHO = echo_pin
@@ -41,12 +41,12 @@ class UltrasonicSensor:
     def cleanup(self):
         GPIO.cleanup()
         
-if __name__ == "__main__":
-    ultrasonic_sensor = UltrasonicSensor()
-    try:
-        while True:
-            distance = ultrasonic_sensor.measure_distance()
-            print(f"Distance: {distance} cm")
-            time.sleep(1)
-    except KeyboardInterrupt:
-        ultrasonic_sensor.cleanup()
+# if __name__ == "__main__":
+#     ultrasonic_sensor = Ultrasonic()
+#     try:
+#         while True:
+#             distance = ultrasonic_sensor.measure_distance()
+#             print(f"Distance: {distance} cm")
+#             time.sleep(1)
+#     except KeyboardInterrupt:
+#         ultrasonic_sensor.cleanup()

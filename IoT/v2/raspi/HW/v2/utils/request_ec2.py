@@ -25,6 +25,6 @@ class EC2Request:
         except ValueError:
             print("Error parsing JSON response")
 
-if __name__ == "__main__":
-    ec2_request = EC2Request(api_key="dp123", longitude=72.820095, latitude=22.599911, d_id="2")
-    ec2_request.send_request()
+# if __name__ == "__main__":
+#     ec2_request = EC2Request(api_key="dp123", longitude=72.820095, latitude=22.599911, d_id="2")
+#     ec2_request.send_request()
