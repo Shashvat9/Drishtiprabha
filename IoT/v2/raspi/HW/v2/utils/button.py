@@ -3,7 +3,7 @@ import time
 import threading
 
 class ButtonHandler:
-    def __init__(self, pin=11, debounce_time=0.05, click_time=0.3, hold_time=2):
+    def __init__(self, pin=11, debounce_time=0.05, click_time=0.5, hold_time=2):
         """
         Initializes the ButtonHandler.
 
