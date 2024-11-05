@@ -14,7 +14,7 @@ def test_camera(camera_index):
     return ret
 
 if __name__ == "__main__":
-    for index in range(5):
+    for index in range(35):
         print(f"Testing camera index {index}:")
         success = test_camera(index)
         if success:
