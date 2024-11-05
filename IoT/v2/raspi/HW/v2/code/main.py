@@ -106,7 +106,7 @@ def main_loop():
             distance = ultrasonic.measure_distance()
             print(f"Distance: {distance} cm")
             buzzer.buzz_control(distance)
-            time.sleep(0.2)
+            time.sleep(0.1)
 
     except KeyboardInterrupt:
         print("Interrupted by user.")
