@@ -39,13 +39,13 @@ class Buzzer:
         #     self.buzz_off()
         
         if(distance<=100 and distance>80):
-            self.set_frequency(2000)
+            self.set_frequency(1500)
             self.buzz_on(distance/100)
         elif(distance<=80 and distance>50):
             self.set_frequency(1700)
             self.buzz_on(distance/800)
         elif(distance<=50):
-            self.set_frequency(1500)
+            self.set_frequency(2000)
             self.buzz_on(distance/1000)
 
     def cleanup(self):
