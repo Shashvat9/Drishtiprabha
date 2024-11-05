@@ -47,7 +47,19 @@ class Buzzer:
         elif(distance<=50):
             self.set_frequency(2000)
             self.buzz_on(distance/1000)
-
+            
+    def beep_long(self):
+        self.set_frequency(2000)
+        self.buzz_on(0.5)
+        
+    def beep_short(self):
+        self.set_frequency(2000)
+        self.buzz_on(0.1)
+        
+    def bepp_request_ec2(self):
+        self.set_frequency(2000)
+        self.buzz_on(1)
+    
     def cleanup(self):
         self.pwm.stop()
         GPIO.cleanup()
