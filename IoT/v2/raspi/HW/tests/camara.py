@@ -1,26 +1,23 @@
-import time
-from picamera import PiCamera
+import cv2
 
-def test_camera():
-    try:
-        # Initialize the camera
-        camera = PiCamera()
-        
-        # Camera warm-up time
-        time.sleep(2)
-        
-        # Capture an image
-        image_path = '/home/pi/test_image.jpg'  # Change the path as needed
-        camera.capture(image_path)
-        
-        print(f"Image captured and saved to {image_path}")
-        
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        
-    finally:
-        # Clean up resources
-        camera.close()
+def test_camera(camera_index):
+    cap = cv2.VideoCapture(camera_index)
+    if not cap.isOpened():
+        print(f"Camera at index {camera_index} could not be opened.")
+        return False
+    ret, frame = cap.read()
+    if ret:
+        print(f"Camera at index {camera_index} is working.")
+    else:
+        print(f"Camera at index {camera_index} failed to capture a frame.")
+    cap.release()
+    return ret
 
 if __name__ == "__main__":
-    test_camera()
+    for index in range(5):
+        print(f"Testing camera index {index}:")
+        success = test_camera(index)
+        if success:
+            print(f"--> Camera index {index} is available.\n")
+        else:
+            print(f"--> Camera index {index} is not available.\n")
