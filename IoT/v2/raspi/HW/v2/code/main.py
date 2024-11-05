@@ -103,7 +103,7 @@ def main_loop():
             #     if api_key_from_env:
             #         ec2_request = EC2Request(api_key=api_key_from_env)
             #         ec2_request.send_alert(distance)
-            time.sleep(1)
+            time.sleep(0.2)
 
     except KeyboardInterrupt:
         print("Interrupted by user.")
