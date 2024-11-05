@@ -21,8 +21,8 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '../IoT/v2/raspi/HW/v2/.en
 load_dotenv(dotenv_path)
 
 # get key
-# api_key_from_env = os.getenv("API_KEY")
-api_key_from_env = "dp123"
+api_key_from_env = os.getenv("API_KEY")
+# api_key_from_env = "dp123"
 
 GPIO.setmode(GPIO.BOARD)
 
