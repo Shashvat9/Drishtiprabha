@@ -1,13 +1,17 @@
 import os
 import time
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
+
 from dotenv import load_dotenv
 from buzzer import Buzzer
 from ultrasonic import Ultrasonic
-from button_handler import ButtonHandler
-from ec2_request import EC2Request
+from button import ButtonHandler
+from request_ec2 import EC2Request
 import RPi.GPIO as GPIO
 
-dotenv_path = '.env'
+dotenv_path = os.path.join(os.path.dirname(__file__), '../IoT/v2/raspi/HW/v2/.env')
 load_dotenv(dotenv_path)
 
 # get key
