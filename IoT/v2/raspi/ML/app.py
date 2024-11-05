@@ -19,39 +19,41 @@ def text_to_speech(captions):
     # Save the speech to an MP3 file
     tts.save("caption_audio.mp3")
     
-    # Play the generated speech (replace with your preferred audio player if needed)
+    # Play the generated speech
     os.system("mpg321 caption_audio.mp3") 
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        print("Failed to capture image")
-        break
+def run_ml_model(stop_event):
+    while not stop_event.is_set():
+        ret, frame = cap.read()
+        if not ret:
+            print("Failed to capture image")
+            break
 
-    # Convert the frame to RGB format
-    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    
-    # Run YOLOv8 object detection on the frame
-    results = model(frame_rgb)
+        # Convert the frame to RGB format
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        
+        # Run YOLOv8 object detection on the frame
+        results = model(frame_rgb)
 
-    # Generate captions from detections
-    captions = []
-    for result in results:
-        for detection in result.boxes:
-            class_name = model.names[int(detection.cls)] 
-            captions.append(f"Detected {class_name}")
+        # Generate captions from detections
+        captions = []
+        for result in results:
+            for detection in result.boxes:
+                class_name = model.names[int(detection.cls)] 
+                captions.append(f"Detected {class_name}")
 
-    # Convert the captions to speech and play the audio
-    if captions:
-        text_to_speech(captions)
+        # Convert the captions to speech and play the audio
+        if captions:
+            text_to_speech(captions)
 
-    # Display the frame with YOLOv8 detections
-    cv2.imshow("YOLOv8 Detection", frame_rgb)
+        # Display the frame with YOLOv8 detections
+        cv2.imshow("YOLOv8 Detection", frame_rgb)
 
-    # Press 'q' to exit the loop
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        # Check for 'q' key press to exit
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            stop_event.set()
+            break
 
-# Release resources
-cap.release()
-cv2.destroyAllWindows()
+    # Release resources
+    cap.release()
+    cv2.destroyAllWindows()
