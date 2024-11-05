@@ -2,23 +2,20 @@ import os
 import cv2
 from ultralytics import YOLO
 from gtts import gTTS
-from playsound import playsound  # Alternative: Use mpg321 via os.system
 from threading import Thread
 import time
 from picamera2 import Picamera2
 
 def play_audio_gtts(text):
-    """Converts text to speech using gTTS and plays the audio."""
+    """Converts text to speech using gTTS and plays the audio using mpg321."""
     try:
         # Initialize gTTS and save the audio file
         tts = gTTS(text=text, lang='en')
         audio_file = "tts_output.mp3"
         tts.save(audio_file)
         
-        # Play the audio file
-        playsound(audio_file)
-        # Alternatively, using mpg321:
-        # os.system(f"mpg321 {audio_file}")
+        # Play the audio file using mpg321
+        os.system(f"mpg321 {audio_file}")
         
         # Remove the audio file after playback
         os.remove(audio_file)
