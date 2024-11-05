@@ -68,7 +68,7 @@ def main_loop():
         button_handler = ButtonHandler(button_pin)
         while True:
             # Example: Ultrasonic sensor reading
-            distance = ultrasonic.get_distance()
+            distance = ultrasonic.measure_distance()
             click_count = button_handler.get_click_count()
             print(f"Distance: {distance} cm")
             buzzer.buzz_control(distance)
