@@ -38,7 +38,7 @@ class Buzzer:
         # else:
         #     self.buzz_off()
         
-        if(distance<=100 and distance>80):
+        if(distance<90 and distance>80):
             self.set_frequency(1500)
             self.buzz_on(distance/100)
         elif(distance<=80 and distance>50):
