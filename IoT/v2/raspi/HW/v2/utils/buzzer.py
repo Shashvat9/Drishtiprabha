@@ -23,21 +23,6 @@ class Buzzer:
         self.pwm.ChangeDutyCycle(0)    # 0% duty cycle to turn off
 
     def buzz_control(self, distance):
-        # if distance <= 10:
-        #     self.set_frequency(2000)
-        #     self.buzz_on(0.05)
-        # elif distance < 40:
-        #     self.set_frequency(1500)
-        #     self.buzz_on(0.15)
-        # elif distance < 70:
-        #     self.set_frequency(1000)
-        #     self.buzz_on(0.25)
-        # elif distance <= 100:
-        #     self.set_frequency(500)
-        #     self.buzz_on(0.35)
-        # else:
-        #     self.buzz_off()
-        
         if(distance<90 and distance>80):
             self.set_frequency(1500)
             self.buzz_on(distance/500)
@@ -56,7 +41,7 @@ class Buzzer:
         self.set_frequency(2000)
         self.buzz_on(0.1)
         
-    def bepp_request_ec2(self):
+    def beep_request_ec2(self):
         self.set_frequency(2000)
         self.buzz_on(1)
     
