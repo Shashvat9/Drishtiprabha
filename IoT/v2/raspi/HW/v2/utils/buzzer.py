@@ -42,7 +42,10 @@ class Buzzer:
         # self.buzz_off()
         
         if(distance <= 100):
+            self.pwm.ChangeFrequence(self.frequency-500)
             self.buzz_on(distance/1000)
+        elif(distance < 50):
+            self.buzz_on(distance/100)
         else:
             self.buzz_off()
 
