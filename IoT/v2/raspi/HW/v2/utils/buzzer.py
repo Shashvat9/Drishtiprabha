@@ -42,7 +42,7 @@ class Buzzer:
         # self.buzz_off()
         
         if(distance <= 100):
-            self.buzz_on(distance/100)
+            self.buzz_on(distance/1000)
         else:
             self.buzz_off()
 
