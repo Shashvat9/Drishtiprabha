@@ -46,7 +46,7 @@ try:
         distance = ultrasonic_sensor.measure_distance()
         print(f"Distance: {distance} cm")
         buzzer.buzz_control(distance)
-        print(button.get_click_count())
+        # print(button.get_click_count())
         # if(button.get_click_count() == 5):
         #     ec2_request.send_request()
         #     print("Request sent")
