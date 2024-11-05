@@ -40,7 +40,8 @@ try:
     button_click_count = 0
     button = ButtonHandler(pin=button_pin)
     ultrasonic_sensor = Ultrasonic(trig_pin=ultrasonic_pin_trig, echo_pin=ultrasonic_pin_echo)
-    ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.820095, latitude=22.599911, d_id="3")
+    ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.820095, latitude=22.599911, d_id="2")
+    
     while True:
         distance = ultrasonic_sensor.measure_distance()
         print(f"Distance: {distance} cm")
