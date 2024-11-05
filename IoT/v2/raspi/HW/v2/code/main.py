@@ -9,10 +9,10 @@ from threading import Event
 
 # Add the path to the utils folder
 sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '../IoT/v2/raspi/ML'))
+sys.path.append('/home/admin/Drishtiprabha/IoT/v2/raspi/ML')
 
 # Import the required modules
-# from app import run_ml_model  # Import the ML function
+from app import run_ml_model  # Import the ML function
 from dotenv import load_dotenv
 from buzzer import Buzzer
 from ultrasonic import Ultrasonic
