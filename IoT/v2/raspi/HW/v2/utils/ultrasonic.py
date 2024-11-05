@@ -51,7 +51,7 @@ if __name__ == "__main__":
         while True:
             distance = ultrasonic_sensor.measure_distance()
             print(f"Distance: {distance} cm")
-            time.sleep(1)
+            # time.sleep(1)
     except KeyboardInterrupt:
         ultrasonic_sensor.cleanup()
         print("Exiting")
