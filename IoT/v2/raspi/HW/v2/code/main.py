@@ -94,8 +94,9 @@ def main_loop():
 
         while True:
             # Example: Ultrasonic sensor reading
-            distance = ultrasonic.get_distance()
+            distance = ultrasonic.measure_distance()
             print(f"Distance: {distance} cm")
+            buzzer.buzz_control(distance)
             # if distance < 10:
             #     buzzer.beep()
             #     # Example action: Send request to EC2 if API_KEY is set
