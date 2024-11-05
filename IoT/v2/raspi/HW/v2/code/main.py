@@ -11,7 +11,7 @@ from button import ButtonHandler
 from request_ec2 import EC2Request
 import RPi.GPIO as GPIO
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '../IoT/v2/raspi/HW/v2/.env')
+dotenv_path = os.path.join(os.path.dirname(__file__))
 load_dotenv(dotenv_path)
 
 # get key
