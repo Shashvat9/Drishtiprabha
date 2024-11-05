@@ -41,7 +41,7 @@ class Buzzer:
         # time.sleep(distance/100)
         # self.buzz_off()
         
-        if(distance <= 100)
+        if(distance <= 100):
             self.buzz_on(distance/100)
         else:
             self.buzz_off()
