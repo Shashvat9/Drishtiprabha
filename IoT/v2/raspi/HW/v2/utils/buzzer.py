@@ -17,22 +17,25 @@ class Buzzer:
         self.pwm.ChangeDutyCycle(0)    # 0% duty cycle to turn off
 
     def buzz_control(self, distance):
-        if 70 <= distance <= 100:
-            self.buzz_on()
-            time.sleep(0.35)
-            self.buzz_off()
-        elif 40 <= distance < 70:
-            self.buzz_on()
-            time.sleep(0.25)
-            self.buzz_off()
-        elif 10 <= distance < 40:
-            self.buzz_on()
-            time.sleep(0.15)
-            self.buzz_off()
-        elif distance < 10:
-            self.buzz_on()
-        else:
-            self.buzz_off()
+        # if 70 <= distance <= 100:
+        #     self.buzz_on()
+        #     time.sleep(0.35)
+        #     self.buzz_off()
+        # elif 40 <= distance < 70:
+        #     self.buzz_on()
+        #     time.sleep(0.25)
+        #     self.buzz_off()
+        # elif 10 <= distance < 40:
+        #     self.buzz_on()
+        #     time.sleep(0.15)
+        #     self.buzz_off()
+        # elif distance < 10:
+        #     self.buzz_on()
+        # else:
+        #     self.buzz_off()
+        self.buzz_on()
+        time.sleep(distance/100)
+        self.buzz_off()
 
     def cleanup(self):
         self.pwm.stop()
