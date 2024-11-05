@@ -2,6 +2,11 @@ import os
 import sys
 import RPi.GPIO as GPIO
 import time
+
+# Add the path to the utils and ML folders if needed
+sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
+sys.path.append('/home/admin/Drishtiprabha/IoT/v2/raspi/ML')
+
 from threading import Thread
 from app import ObjectDetectionModel  # Import the ML class
 from dotenv import load_dotenv
@@ -10,9 +15,7 @@ from ultrasonic import Ultrasonic
 from button import ButtonHandler
 from request_ec2 import EC2Request
 
-# Add the path to the utils and ML folders if needed
-sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
-sys.path.append('/home/admin/Drishtiprabha/IoT/v2/raspi/ML')
+
 
 # Load environment variables
 dotenv_path = '/home/admin/Drishtiprabha/IoT/v2/raspi/HW/v2/.env'
