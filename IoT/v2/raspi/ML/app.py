@@ -9,21 +9,16 @@ from picamera2 import Picamera2
 def play_audio_gtts(text):
     """Converts text to speech using gTTS and plays the audio using mpg321."""
     try:
-        # Create a hash of the text for a unique filename
-        text_hash = hashlib.md5(text.encode()).hexdigest()
-        audio_file = f"tts_cache/{text_hash}.mp3"
-        
-        # Create cache directory if it doesn't exist
-        os.makedirs("tts_cache", exist_ok=True)
-        
-        # Generate audio file if it doesn't exist
-        if not os.path.exists(audio_file):
-            tts = gTTS(text=text, lang='en')
-            tts.save(audio_file)
+        # Initialize gTTS and save the audio file
+        tts = gTTS(text=text, lang='en')
+        audio_file = "tts_output.mp3"
+        tts.save(audio_file)
         
         # Play the audio file using mpg321
         os.system(f"mpg321 {audio_file}")
         
+        # Remove the audio file after playback
+        os.remove(audio_file)
     except Exception as e:
         print(f"Error in play_audio_gtts: {e}")
 
