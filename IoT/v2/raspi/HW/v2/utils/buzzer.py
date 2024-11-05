@@ -35,15 +35,15 @@ class Buzzer:
             
     def beep_long(self):
         self.set_frequency(2000)
-        self.buzz_on(0.5)
+        self.buzz_on(1)
         
     def beep_short(self):
         self.set_frequency(2000)
-        self.buzz_on(0.1)
+        self.buzz_on(0.5)
         
     def beep_request_ec2(self):
         self.set_frequency(2000)
-        self.buzz_on(1)
+        self.buzz_on(2)
     
     def cleanup(self):
         self.pwm.stop()
