@@ -44,9 +44,9 @@ def run_object_detection():
     # Load YOLO model (YOLOv8n is lightweight and suitable for Raspberry Pi)
     model = YOLO('yolov8n.pt')  # Ensure the model file is present or download it
 
-    # Initialize Picamera2
+    # Initialize Picamera2 with RGB888 format
     picam2 = Picamera2()
-    picam2.configure(picam2.create_preview_configuration(main={"size": (640, 480)}))
+    picam2.configure(picam2.create_still_configuration(main={"size": (640, 480), "format": "RGB888"}))
     picam2.start()
     time.sleep(2)  # Allow camera to warm up
 
@@ -64,6 +64,9 @@ def run_object_detection():
 
             # Resize frame for faster processing
             frame_resized = cv2.resize(frame, (640, 480))
+
+            # **Optional: Verify frame shape**
+            # print(f"Frame shape: {frame_resized.shape}")  # Should be (480, 640, 3)
 
             # Perform object detection
             results = model(frame_resized)
