@@ -8,12 +8,13 @@ class Buzzer:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.pin, GPIO.OUT)
         self.pwm = GPIO.PWM(self.pin, self.frequency)
+        self.pwm.start(0)  # Start with buzzer off
 
     def buzz_on(self):
-        self.pwm.start(50)  # 50% duty cycle
+        self.pwm.ChangeDutyCycle(100)  # 100% duty cycle
 
     def buzz_off(self):
-        self.pwm.start(0)   # 0% duty cycle to turn off
+        self.pwm.ChangeDutyCycle(0)    # 0% duty cycle to turn off
 
     def buzz_control(self, distance):
         if 70 <= distance <= 100:
