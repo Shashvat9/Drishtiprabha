@@ -78,10 +78,10 @@ def handle_press(count):
     elif count == 2:
         # Double Press: Trigger EC2 Request
         print("Button double-pressed: Sending EC2 request.")
-        buzzer.beep_double()  # Audible feedback for double press
-        if api_key_from_env:
-            ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.820095, latitude=22.599911, d_id="2")
-            ec2_request.send_request()
+        buzzer.bepp_request_ec2()  # Audible feedback for double press
+        ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.820095, latitude=22.599911, d_id="2")
+        ec2_request.send_request()
+        time.sleep(1)  # Delay to prevent multiple requests
 
     # Reset press_count and press_timer
     press_count = 0
@@ -91,7 +91,6 @@ def main_loop():
     try:
         # Setup button interrupt
         GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=200)
-        print(api_key_from_env)
 
         while True:
             # Example: Ultrasonic sensor reading
