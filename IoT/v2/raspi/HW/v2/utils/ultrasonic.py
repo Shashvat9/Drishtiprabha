@@ -12,41 +12,35 @@ class Ultrasonic:
         GPIO.setup(self.ECHO, GPIO.IN)
 
         print("Waiting for sensor to settle")
-        time.sleep(2)  # Initial settling time
+        time.sleep(0.5)  # Reduced settling time
 
     def measure_distance(self):
-        pulse_start = None
-        pulse_end = None
-
         GPIO.output(self.TRIG, False)
-        time.sleep(0.005)
+        time.sleep(0.00001)
 
         GPIO.output(self.TRIG, True)
-        time.sleep(0.00005)
+        time.sleep(0.00001)
         GPIO.output(self.TRIG, False)
 
-        while GPIO.input(self.ECHO) == 0:
-            pulse_start = time.time()
+        start_time = time.time()
+        timeout = start_time + 0.04  # 40ms timeout
 
-        while GPIO.input(self.ECHO) == 1:
-            pulse_end = time.time()
+        while GPIO.input(self.ECHO) == 0 and start_time < timeout:
+            start_time = time.time()
 
-        if pulse_start and pulse_end:
-            pulse_duration = pulse_end - pulse_start
-            distance = (pulse_duration * 34300) / 2  # Corrected calculation
-            return round(distance, 2)
-        else:
-            return "Error"
+        if start_time >= timeout:
+            return "Timeout"
+
+        end_time = time.time()
+        while GPIO.input(self.ECHO) == 1 and end_time < timeout:
+            end_time = time.time()
+
+        if end_time >= timeout:
+            return "Timeout"
+
+        pulse_duration = end_time - start_time
+        distance = (pulse_duration * 34300) / 2
+        return round(distance, 2)
 
     def cleanup(self):
         GPIO.cleanup()
-        
-if __name__ == "__main__":
-    ultrasonic_sensor = Ultrasonic()
-    try:
-        while True:
-            distance = ultrasonic_sensor.measure_distance()
-            print(f"Distance: {distance} cm")
-            time.sleep(1)
-    except KeyboardInterrupt:
-        ultrasonic_sensor.cleanup()
