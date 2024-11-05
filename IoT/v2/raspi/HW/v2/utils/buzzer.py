@@ -26,7 +26,7 @@ class Buzzer:
             self.buzz_off()
         elif 10 <= distance < 40:
             self.buzz_on()
-            time.sleep(0.15)
+            time.sleep(1)
             self.buzz_off()
         elif distance < 10:
             self.buzz_on()
