@@ -64,8 +64,8 @@ def button_callback(channel):
 def main_loop():
     try:
         # Setup button interrupt
-        # GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=300)
-        # button_handler = ButtonHandler(button_pin)
+        GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=300)
+        button_handler = ButtonHandler(button_pin)
         while True:
             # Example: Ultrasonic sensor reading
             distance = ultrasonic.measure_distance()
@@ -79,7 +79,7 @@ def main_loop():
                 if api_key_from_env:
                     ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.820095, latitude=22.599911, d_id="2")
                     ec2_request.send_request()
-            time.sleep(1)
+            # time.sleep(1)
 
     except KeyboardInterrupt:
         print("Interrupted by user.")
