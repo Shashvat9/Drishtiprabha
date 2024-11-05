@@ -12,7 +12,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '../IoT/v2/raspi/ML'))
 
 # Import the required modules
-from app import run_ml_model  # Import the ML function
+# from app import run_ml_model  # Import the ML function
 from dotenv import load_dotenv
 from buzzer import Buzzer
 from ultrasonic import Ultrasonic
@@ -25,9 +25,9 @@ GPIO.setmode(GPIO.BOARD)
 
 # Load env
 dotenv_path = '/home/admin/Drishtiprabha/IoT/v2/raspi/HW/v2/.env'
-print(f"Dotenv path: {dotenv_path}")
-print("File exists:", os.path.isfile(dotenv_path))
-print("Readable:", os.access(dotenv_path, os.R_OK))
+# print(f"Dotenv path: {dotenv_path}")
+# print("File exists:", os.path.isfile(dotenv_path))
+# print("Readable:", os.access(dotenv_path, os.R_OK))
 load_dotenv(dotenv_path)
 
 # Get API_KEY from .env
@@ -43,6 +43,8 @@ ultrasonic_pin_echo = 16
 # Global variables
 is_button_pressed = False
 stop_ml = Event()  # Event to signal ML model to stop
+
+print(os.path.join(os.path.dirname(__file__), '../IoT/v2/raspi/ML'))
 
 while True:
     """
