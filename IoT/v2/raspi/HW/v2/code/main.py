@@ -69,7 +69,8 @@ def main_loop():
         while True:
             # Example: Ultrasonic sensor reading
             distance = ultrasonic.measure_distance()
-            click_count = button_handler.get_click_count()
+            # click_count = button_handler.get_click_count()
+            click_count = 0
             print(f"Distance: {distance} cm")
             buzzer.buzz_control(distance)
             if click_count ==5:
