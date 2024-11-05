@@ -91,6 +91,7 @@ def main_loop():
     try:
         # Setup button interrupt
         GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=200)
+        print(api_key_from_env)
 
         while True:
             # Example: Ultrasonic sensor reading
