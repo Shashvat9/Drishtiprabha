@@ -11,8 +11,17 @@ from button import ButtonHandler
 from request_ec2 import EC2Request
 import RPi.GPIO as GPIO
 
-dotenv_path = os.path.join(os.path.dirname(__file__))
+# Add to main.py to verify the dotenv path and permissions
+# import os
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+print(f"Dotenv path: {dotenv_path}")
+print("File exists:", os.path.isfile(dotenv_path))
+print("Readable:", os.access(dotenv_path, os.R_OK))
 load_dotenv(dotenv_path)
+
+dotenv_path = os.path.join(os.path.dirname(__file__))
+# load_dotenv(dotenv_path)
 
 # get key
 api_key_from_env = os.getenv("API_KEY")
