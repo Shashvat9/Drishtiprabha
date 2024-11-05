@@ -1,20 +1,29 @@
 import os
 import cv2
 from ultralytics import YOLO
-import pyttsx3
+from gtts import gTTS
+from playsound import playsound  # Alternative: Use mpg321 via os.system
 from threading import Thread
 import time
 from picamera2 import Picamera2
 
-# Initialize pyttsx3 engine
-engine = pyttsx3.init()
-engine.setProperty('rate', 150)    # Set speech rate
-engine.setProperty('volume', 0.8)  # Set volume level (0.0 to 1.0)
-
-def play_audio(text):
-    """Converts text to speech and plays the audio."""
-    engine.say(text)
-    engine.runAndWait()
+def play_audio_gtts(text):
+    """Converts text to speech using gTTS and plays the audio."""
+    try:
+        # Initialize gTTS and save the audio file
+        tts = gTTS(text=text, lang='en')
+        audio_file = "tts_output.mp3"
+        tts.save(audio_file)
+        
+        # Play the audio file
+        playsound(audio_file)
+        # Alternatively, using mpg321:
+        # os.system(f"mpg321 {audio_file}")
+        
+        # Remove the audio file after playback
+        os.remove(audio_file)
+    except Exception as e:
+        print(f"Error in play_audio_gtts: {e}")
 
 def text_to_speech(captions, last_tts_time, cooldown=2):
     """
@@ -33,12 +42,12 @@ def text_to_speech(captions, last_tts_time, cooldown=2):
     if not captions:
         return
 
-    # Combine all captions into a single string
-    caption_text = ', '.join(captions)
+    # Combine all captions into a single string with proper punctuation
+    caption_text = ', '.join(captions) + '.'
     print(f"TTS Output: {caption_text}")
 
     # Play the generated speech in a separate thread
-    audio_thread = Thread(target=play_audio, args=(caption_text,))
+    audio_thread = Thread(target=play_audio_gtts, args=(caption_text,))
     audio_thread.start()
 
     # Update the last TTS time
@@ -100,7 +109,6 @@ def run_object_detection():
     finally:
         # Release resources
         picam2.stop()
-        engine.stop()
 
 if __name__ == "__main__":
     run_object_detection()
