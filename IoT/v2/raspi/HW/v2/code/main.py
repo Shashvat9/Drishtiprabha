@@ -65,11 +65,12 @@ def main_loop():
     try:
         # Setup button interrupt
         # GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=300)
-        button_handler = ButtonHandler(button_pin)
+        # button_handler = ButtonHandler(button_pin)
         while True:
             # Example: Ultrasonic sensor reading
             distance = ultrasonic.measure_distance()
-            click_count = button_handler.get_click_count()
+            # click_count = button_handler.get_click_count()
+            click_count = 0
             print(f"Distance: {distance} cm")
             buzzer.buzz_control(distance)
             if click_count ==5:
