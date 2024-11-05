@@ -29,14 +29,14 @@ class Ultrasonic:
             start_time = time.time()
 
         if start_time >= timeout:
-            return "Timeout"
+            return 99999
 
         end_time = time.time()
         while GPIO.input(self.ECHO) == 1 and end_time < timeout:
             end_time = time.time()
 
         if end_time >= timeout:
-            return "Timeout"
+            return 99999
 
         pulse_duration = end_time - start_time
         distance = (pulse_duration * 34300) / 2
