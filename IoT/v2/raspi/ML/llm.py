@@ -24,7 +24,8 @@ llm_model = GPT2LMHeadModel.from_pretrained("distilgpt2")
 def get_navigation_guidance(captions):
     navigation_guidances = []
     for caption in captions:
-        prompt = f"{caption}. Suggest how the user should move to avoid it."
+        prompt = f"{caption}. hithere."
+        print(prompt)
         inputs = tokenizer(prompt, return_tensors="pt")
         outputs = llm_model.generate(**inputs, max_length=50)
         guidance = tokenizer.decode(outputs[0], skip_special_tokens=True)
