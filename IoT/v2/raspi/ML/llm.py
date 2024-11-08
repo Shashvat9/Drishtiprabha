@@ -34,6 +34,8 @@ def get_navigation_guidance(captions):
 
 def text_to_speech(captions):
     caption_text = ' '.join(captions)
+    tts_engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha') 
+    tts_engine.setProperty('rate', 200)
     tts_engine.say(caption_text)
     tts_engine.runAndWait()
 
