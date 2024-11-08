@@ -1,81 +1,75 @@
-from ultralytics import YOLO
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
+# FILE: llm.py
+import cv2
+import torch
 import pyttsx3
 from picamera2 import Picamera2
-import numpy as np
 import time
+import numpy as np
 
-# Load YOLO model (Using YOLOv8 for demonstration purposes)
-model = YOLO('yolov8n.pt') 
+# Initialize YOLOv5 Nano model
+model = torch.hub.load('ultralytics/yolov5', 'yolov5n', pretrained=True)
+model.conf = 0.5  # Confidence threshold
+model.classes = None  # Detect all classes
 
-
+# Initialize Camera
 picam2 = Picamera2()
-picam2.configure(picam2.create_preview_configuration(main={"format": "RGB888", "size": (640, 480)}))
+picam2.configure(picam2.create_still_configuration(main={"format": "RGB888", "size": (320, 240)}))
 picam2.start()
 
-
+# Initialize TTS Engine
 tts_engine = pyttsx3.init()
+voices = tts_engine.getProperty('voices')
+for voice in voices:
+    if 'samantha' in voice.id.lower():  # Example for macOS
+        tts_engine.setProperty('voice', voice.id)
+        break
+tts_engine.setProperty('rate', 150)
+tts_engine.setProperty('volume', 1.0)
 
+def determine_direction(detections):
+    directions = []
+    for *xyxy, conf, cls in detections:
+        x_center = (xyxy[0] + xyxy[2]) / 2
+        if x_center < 106:  # Left third
+            directions.append('right')
+        elif x_center > 214:  # Right third
+            directions.append('left')
+        else:  # Center third
+            directions.append('straight')
+    if directions:
+        # Prioritize the most common direction
+        direction = max(set(directions), key=directions.count)
+        return direction
+    return 'straight'
 
-tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
-llm_model = GPT2LMHeadModel.from_pretrained("distilgpt2")
-
-
-def get_navigation_guidance(captions):
-    navigation_guidances = []
-    for caption in captions:
-        prompt = f"System has detected {caption}. Provide a clear and concise navigation instruction to avoid this object.Left, right, or straight?"
-        inputs = tokenizer(prompt, return_tensors="pt")
-        outputs = llm_model.generate(
-            **inputs,
-            max_length=50,
-            num_return_sequences=1,
-            no_repeat_ngram_size=2,
-            temperature=0.7,
-            top_p=0.9,
-            eos_token_id=tokenizer.eos_token_id
-        )
-        guidance = tokenizer.decode(outputs[0], skip_special_tokens=True)
-        # Extract the part after the prompt
-        guidance = guidance.replace(prompt, "").strip()
-        navigation_guidances.append(guidance)
-        print(f"Generated guidance for {caption}: {guidance}")
-    return navigation_guidances
-
-
-def text_to_speech(captions):
-    caption_text = ' '.join(captions)
-    # Select a more natural voice if available
-    voices = tts_engine.getProperty('voices')
-    for voice in voices:
-        if 'samantha' in voice.id.lower():  # Example for macOS
-            tts_engine.setProperty('voice', voice.id)
-            break
-    # Adjust rate and volume for natural speech
-    tts_engine.setProperty('rate', 150)  # Slower rate
-    tts_engine.setProperty('volume', 1.0)  # Max volume
-    tts_engine.say(caption_text)
+def text_to_speech(direction):
+    instruction = f"Please turn {direction}."
+    tts_engine.say(instruction)
     tts_engine.runAndWait()
 
-while True:
+def main():
+    processing_interval = 2  # seconds
+    last_processing_time = time.time()
 
-    frame = picam2.capture_array()
+    while True:
+        current_time = time.time()
+        if current_time - last_processing_time >= processing_interval:
+            frame = picam2.capture_array()
+            results = model(frame)
+            detections = results.xyxy[0].numpy()  # [x1, y1, x2, y2, conf, cls]
 
-    # Run YOLO detection on the captured frame
-    results = model(frame)
+            direction = determine_direction(detections)
+            print(f"Safe direction: {direction}")
+            text_to_speech(direction)
 
-    # Generate captions from detections (without displaying or bounding boxes)
-    captions = []
-    for result in results:
-        for detection in result.boxes:
-            class_name = model.names[int(detection.cls)]
-            captions.append(f"Detected {class_name}")
+            last_processing_time = current_time
 
+        time.sleep(0.1)  # Prevent 100% CPU usage
 
-    if captions:
-        navigation_guidances = get_navigation_guidance(captions)
-        combined_text = captions + navigation_guidances  
-        text_to_speech(combined_text)
-
-
-    time.sleep(1)  
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Terminating...")
+    finally:
+        picam2.stop()
