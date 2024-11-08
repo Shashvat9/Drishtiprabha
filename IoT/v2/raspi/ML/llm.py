@@ -24,19 +24,35 @@ llm_model = GPT2LMHeadModel.from_pretrained("distilgpt2")
 def get_navigation_guidance(captions):
     navigation_guidances = []
     for caption in captions:
-        prompt = f"{caption}. hithere."
-        print(prompt)
+        prompt = f"System has detected {caption}. Provide a clear and concise navigation instruction to avoid this object."
         inputs = tokenizer(prompt, return_tensors="pt")
-        outputs = llm_model.generate(**inputs, max_length=50)
+        outputs = llm_model.generate(
+            **inputs,
+            max_length=50,
+            num_return_sequences=1,
+            no_repeat_ngram_size=2,
+            temperature=0.7,
+            top_p=0.9,
+            eos_token_id=tokenizer.eos_token_id
+        )
         guidance = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # Extract the part after the prompt
+        guidance = guidance.replace(prompt, "").strip()
         navigation_guidances.append(guidance)
     return navigation_guidances
 
 
 def text_to_speech(captions):
     caption_text = ' '.join(captions)
-    tts_engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha') 
-    tts_engine.setProperty('rate', 200)
+    # Select a more natural voice if available
+    voices = tts_engine.getProperty('voices')
+    for voice in voices:
+        if 'samantha' in voice.id.lower():  # Example for macOS
+            tts_engine.setProperty('voice', voice.id)
+            break
+    # Adjust rate and volume for natural speech
+    tts_engine.setProperty('rate', 150)  # Slower rate
+    tts_engine.setProperty('volume', 1.0)  # Max volume
     tts_engine.say(caption_text)
     tts_engine.runAndWait()
 
