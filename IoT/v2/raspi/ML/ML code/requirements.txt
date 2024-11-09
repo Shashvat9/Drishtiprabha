@@ -1,0 +1,7 @@
+ultralytics
+pyttsx3
+torch
+torchvision
+transformers
+picamera2
+RPi.GPIO
