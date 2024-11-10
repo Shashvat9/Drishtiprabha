@@ -1,5 +1,7 @@
 # main.py
-
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
 from yolo_detection import detect_objects
 from embedding import generate_image_embedding
 from navigation import llm_navigation_solution
