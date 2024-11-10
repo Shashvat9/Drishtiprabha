@@ -32,9 +32,9 @@ def main():
                 text_to_speech(captions)
             
             embedding = generate_image_embedding(frame)
-            navigation_instruction = llm_navigation_solution(embedding, captions)
-            
-            text_to_speech([navigation_instruction])
+            if embedding is not None:
+                navigation_instruction = llm_navigation_solution(embedding, captions)
+                text_to_speech([navigation_instruction])
 
             time.sleep(0.5)
     except KeyboardInterrupt:
