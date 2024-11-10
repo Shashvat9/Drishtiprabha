@@ -12,6 +12,10 @@ import time
 def main():
     camera = Camera(resolution=(320, 240))
     
+    if camera.picam2 is None:
+        print("Exiting program due to camera initialization failure.")
+        return
+    
     try:
         while True:
             frame = camera.capture_image()
