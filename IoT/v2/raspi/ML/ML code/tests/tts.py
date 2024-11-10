@@ -1,5 +1,6 @@
 # test_tts.py
-
+import sys
+sys.path.append("IoT/v2/raspi/ML/ML code/")
 from text_to_speech import text_to_speech
 
 def test_tts():
