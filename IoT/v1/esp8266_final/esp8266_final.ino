@@ -25,7 +25,7 @@
 
 const char* ssid     = "Hi";
 const char* password = "hithere.";
-const String serverName = "https://3.108.54.205/api/v2/update_db.php";
+const String serverName = "https://3.108.54.205/api/v1/update_db.php";
 const char* googleApiKey = "AIzaSyC-iSJulKT-gdv4JF3_hc3UZfYlRWWh6w4";
 String apiKeyValue = "dp123";
 String d_id = "2";
