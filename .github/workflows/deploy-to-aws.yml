@@ -24,7 +24,7 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        known_hosts: '3.108.54.205 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILwT2FJ3xD6ohpoPgTcekrD1nTnv+5QqAz2OFIKtQOQE'
+        known_hosts: '3.108.54.205 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYd7RtY/hxGRI19NnSrsNA5FgfsQd1Y3WzGZu7je4rT'
 
     - name: Clear existing files in 'api' directory (optional)
       run: |
