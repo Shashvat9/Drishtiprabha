@@ -3,7 +3,7 @@ import time
 import RPi.GPIO as GPIO
 
 # GPS Module Configuration
-GPS_SERIAL_PORT = "/dev/ttyAMA0"  # Common serial port for GPS
+GPS_SERIAL_PORT = "/dev/ttyS0"  # Changed to software serial port
 GPS_BAUD_RATE = 9600
 
 # Initialize GPIO
@@ -33,17 +33,6 @@ def parse_nmea_sentence(sentence):
     else:
         # Print unsupported sentences for debugging
         print(f"Unsupported NMEA sentence: {sentence}")
-
-# def read_gps_data(ser):
-#     if ser and ser.isOpen():
-#         try:
-#             line = ser.readline().decode('ascii', errors='ignore').strip()
-#             if line.startswith('$'):
-#                 parse_nmea_sentence(line)
-#         except Exception as e:
-#             print(f"Error reading GPS data: {e}")
-#     else:
-#         print("Serial port not open")
 
 def initialize_gps():
     try:
