@@ -42,7 +42,7 @@ def get_location(api_key):
         return None
 
 # Example usage
-api_key = 'YOUR_GOOGLE_GEOLOCATION_API_KEY'
+api_key = 'AIzaSyC-iSJulKT-gdv4JF3_hc3UZfYlRWWh6w4'
 latitude, longitude = get_location(api_key)
 if latitude and longitude:
     print(f"Latitude: {latitude}, Longitude: {longitude}")

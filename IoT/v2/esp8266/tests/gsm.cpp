@@ -23,6 +23,7 @@ mySerial.println("AT"); //Once the handshake test is successful, it will back to
 void loop()
 {
   updateSerial();
+  receiveSMS();
 }
 void updateSerial()
 {
@@ -35,4 +36,9 @@ void updateSerial()
   {
     Serial.write(mySerial.read());//Forward what Software Serial received to Serial Por6+t
   }
+}
+
+void receiveSMS() {
+  mySerial.println("AT+CMGR=1"); // Read the first SMS message
+  updateSerial();
 }
