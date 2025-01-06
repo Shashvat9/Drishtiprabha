@@ -88,8 +88,8 @@ def handle_press(count):
             print("Button double-pressed: Sending EC2 request.")
             buzzer.beep_request_ec2()  # Audible feedback for double press
             # if api_key_from_env:
-            # ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.820095, latitude=22.599911, d_id="2")
-            ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.819309, latitude=22.605796, d_id="2")
+            ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.820095, latitude=22.599911, d_id="2")
+            # ec2_request = EC2Request(api_key=api_key_from_env, longitude=72.819309, latitude=22.605796, d_id="2")
             ec2_request.send_request()
             time.sleep(1)
 
