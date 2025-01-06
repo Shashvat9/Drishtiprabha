@@ -1,16 +1,17 @@
 import subprocess
 import requests
 import json
+import re
 
 def get_wifi_access_points():
     try:
         # Execute the system command to scan Wi-Fi networks
-        scan_output = subprocess.check_output(['netsh', 'wlan', 'show', 'networks', 'mode=Bssid'], universal_newlines=True)
+        scan_output = subprocess.check_output(['iwlist', 'wlan0', 'scan'], universal_newlines=True)
         
-        # Regular expressions to extract SSID, BSSID, and Signal Strength
-        ssid_re = re.compile(r"SSID \d+ : (.+)")
-        bssid_re = re.compile(r"BSSID \d+ : ([\w:]+)")
-        signal_re = re.compile(r"Signal\s*:\s*(\d+)%")
+        # Regular expressions to extract SSID, MAC Address, and Signal Strength
+        ssid_re = re.compile(r"ESSID:\"(.+)\"")
+        bssid_re = re.compile(r"Address: ([\w:]+)")
+        signal_re = re.compile(r"Signal level=([-]?\d+) dBm")
         
         wifi_access_points = []
         current_ap = {}
