@@ -48,5 +48,7 @@ location = get_location(api_key)
 if location:
     latitude, longitude = location
     print(f"Latitude: {latitude}, Longitude: {longitude}")
+    maps_url = f"https://www.google.com/maps/search/{latitude},{longitude}"
+    print(f"Google Maps URL: {maps_url}")
 else:
     print("Could not determine location")
