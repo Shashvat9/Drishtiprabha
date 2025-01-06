@@ -41,10 +41,12 @@ def get_location(api_key):
     else:
         return None
 
+
 # Example usage
 api_key = 'AIzaSyC-iSJulKT-gdv4JF3_hc3UZfYlRWWh6w4'
-latitude, longitude = get_location(api_key)
-if latitude and longitude:
+location = get_location(api_key)
+if location:
+    latitude, longitude = location
     print(f"Latitude: {latitude}, Longitude: {longitude}")
 else:
     print("Could not determine location")
