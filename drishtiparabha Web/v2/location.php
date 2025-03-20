@@ -115,7 +115,7 @@ if(!isset($_SESSION["email"]))
 
     $array=sendRequest(setJsonGet_Loc("ALL", $_SESSION["email"]));
 
-    // print_r($data);
+    print_r($array);
 
     foreach ($array as $key => $value) {
       if (is_array($value)) {

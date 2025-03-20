@@ -22,6 +22,10 @@ void setup() {
   mySerial.println("AT+CCID"); // Read SIM information
   updateSerial();
   
+  // Configure GSM module to notify on incoming SMS
+  mySerial.println("AT+CNMI=2,2,0,0,0"); // Enable SMS notifications
+  updateSerial();
+  
   // Wait for network registration
   while (!isRegistered()) {
     Serial.println("Waiting for network registration...");
@@ -31,10 +35,10 @@ void setup() {
   Serial.println("Network registered successfully.");
 }
 
-void loop() {
-  updateSerial();
-  receiveSMS();
-}
+// void loop() {
+//   updateSerial();
+//   // Removed manual SMS checking since CNMI handles notifications
+// }
 
 void updateSerial() {
   delay(500);
@@ -46,22 +50,9 @@ void updateSerial() {
   }
 }
 
-void receiveSMS() {
-  mySerial.println("AT+CMGR=1"); // Read the first SMS message
-  updateSerial();
-}
-
-void sendSMS(const char* number, const char* message) {
-  mySerial.println("AT+CMGF=1"); // Set SMS to text mode
-  delay(100);
-  mySerial.print("AT+CMGS=\"");
-  mySerial.print(number);
-  mySerial.println("\"");
-  delay(100);
-  mySerial.println(message);
-  delay(100);
-  mySerial.write(26); // Ctrl+Z to send the SMS
-  delay(1000);
+void receiveSMS(String smsContent) {
+  Serial.println("Received SMS:");
+  Serial.println(smsContent);
 }
 
 bool isRegistered() {
@@ -77,4 +68,21 @@ bool isRegistered() {
     }
   }
   return false;
+}
+
+// Add a new function to parse incoming SMS
+void parseIncomingSMS() {
+  if (mySerial.available()) {
+    String incoming = mySerial.readStringUntil('\n');
+    if (incoming.indexOf("+CMT:") != -1) {
+      String smsContent = mySerial.readStringUntil('\n');
+      receiveSMS(smsContent);
+    }
+  }
+}
+
+// Modify the loop to handle incoming SMS notifications
+void loop() {
+  updateSerial();
+  parseIncomingSMS();
 }
