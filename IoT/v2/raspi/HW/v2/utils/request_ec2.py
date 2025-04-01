@@ -6,7 +6,7 @@ class EC2Request:
         self.longitude = longitude
         self.latitude = latitude
         self.d_id = d_id
-        self.api_url = "http://13.202.118.172/api/v2/update_db.php"
+        self.api_url = "http://3.6.71.39/api/v2/update_db.php"
 
     def send_request(self):
         params = {

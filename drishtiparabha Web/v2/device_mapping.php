@@ -7,7 +7,7 @@ if (!isset($_SESSION["email"])) {
 }
 
 function sendPostRequest($data) {
-    $url = "https://13.202.118.172/api/v2/device_user_map.php";
+    $url = "https://3.6.71.39/api/v2/device_user_map.php";
     $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
 
