@@ -102,7 +102,7 @@ def handle_press(count):
 def main_loop():
     try:
         # Setup button interrupt
-        GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=200)
+        GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=400)
 
         while True:
             # Example: Ultrasonic sensor reading
