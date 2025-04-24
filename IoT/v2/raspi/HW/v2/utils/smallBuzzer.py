@@ -10,13 +10,10 @@ class BuzzerSmall:
         GPIO.setup(self.pin, GPIO.OUT)
         self.pwm = GPIO.PWM(self.pin, self.frequency)
 
-    def buzz(self, duration):
-        """Activates the buzzer for a specific duration at the fixed frequency."""
-        if duration <= 0: # Avoid errors with non-positive duration
-            return
+    def buzz(self,duration):
         self.pwm.start(50)  # Start PWM with 50% duty cycle
         time.sleep(duration)
-        self.pwm.stop()  # Stop PWM
+        self.pwm.stop()
 
     def buzz_control(self, distance):
         """Controls the buzzer based on distance with fixed frequency."""
