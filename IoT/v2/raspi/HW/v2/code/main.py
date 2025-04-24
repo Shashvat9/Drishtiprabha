@@ -26,7 +26,7 @@ api_key_from_env = os.getenv("API_KEY")
 
 # Pin setup
 button_pin = 11
-buzzer_pin = 37
+buzzer_pin = 36
 ultrasonic_pin_trig = 15
 ultrasonic_pin_echo = 16
 
