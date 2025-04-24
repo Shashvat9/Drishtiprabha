@@ -16,12 +16,12 @@ class ButtonHandler:
 
     def _handle_event(self, channel):
         if GPIO.input(self.TEST_BUTTON_PIN) == GPIO.LOW:
-            self.press_time = time.time()
-            if self.hold_timer is None:
-                self.hold_timer = threading.Timer(2, self._detect_hold)
-                self.hold_timer.start()
-        else:
-            release_time = time.time()
+        #     self.press_time = time.time()
+        #     if self.hold_timer is None:
+        #         self.hold_timer = threading.Timer(2, self._detect_hold)
+        #         self.hold_timer.start()
+        # else:
+        #     release_time = time.time()
             if self.hold_timer is not None:
                 self.hold_timer.cancel()
                 self.hold_timer = None
@@ -30,10 +30,10 @@ class ButtonHandler:
                     self.click_count += 1
             self.hold_detected = False
 
-    def _detect_hold(self):
-        with self.lock:
-            self.click_count = 5
-            self.hold_detected = True
+    # def _detect_hold(self):
+    #     with self.lock:
+    #         self.click_count = 5
+    #         self.hold_detected = True
 
     def get_click_count(self):
         with self.lock:
