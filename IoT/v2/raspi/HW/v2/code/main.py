@@ -35,7 +35,7 @@ ultrasonic_pin_echo = 16
 # Global variables for press detection
 press_count = 0
 press_timer = None
-DOUBLE_PRESS_INTERVAL = 0.3  # 300 milliseconds
+DOUBLE_PRESS_INTERVAL = 0.4  # 300 milliseconds
 
 # Global variable to track ML model state
 ml_active = False
