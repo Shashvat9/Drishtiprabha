@@ -35,7 +35,7 @@ ultrasonic_pin_echo = 16
 # Global variables for press detection
 press_count = 0
 press_timer = None
-DOUBLE_PRESS_INTERVAL = 0.4  # 300 milliseconds
+DOUBLE_PRESS_INTERVAL = 0.5  # 300 milliseconds
 
 # Global variable to track ML model state
 ml_active = False
@@ -102,7 +102,7 @@ def handle_press(count):
 def main_loop():
     try:
         # Setup button interrupt
-        GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=300)
+        GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=400)
 
         while True:
             # Example: Ultrasonic sensor reading
