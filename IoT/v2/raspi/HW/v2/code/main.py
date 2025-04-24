@@ -10,7 +10,7 @@ sys.path.append('/home/admin/Drishtiprabha/IoT/v2/raspi/ML')
 from threading import Thread, Timer, Lock
 from app import ObjectDetectionModel  # Import the ML class
 from dotenv import load_dotenv
-from smallBuzzer import Buzzer
+from smallBuzzer import BuzzerSmall
 from ultrasonic import Ultrasonic
 from request_ec2 import EC2Request
 
