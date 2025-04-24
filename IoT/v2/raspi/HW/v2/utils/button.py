@@ -44,3 +44,18 @@ class ButtonHandler:
     def cleanup(self):
         GPIO.remove_event_detect(self.TEST_BUTTON_PIN)
         GPIO.cleanup()
+        
+
+if __name__ == "__main__":
+    button_handler = ButtonHandler()
+    try:
+        while True:
+            click_count = button_handler.get_click_count()
+            if click_count > 0:
+                print(f"Button clicked {click_count} times.")
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        button_handler.cleanup()
+        print("GPIO cleanup done.")
