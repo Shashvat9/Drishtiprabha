@@ -44,7 +44,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Button with pull-up resistor
 
 # Initialize hardware components
-buzzer = Buzzer(buzzer_pin)
+buzzer = BuzzerSmall(buzzer_pin)
 ultrasonic = Ultrasonic(ultrasonic_pin_trig, ultrasonic_pin_echo)
 
 # Initialize ML model
