@@ -30,7 +30,7 @@ class BuzzerSmall:
             duration = distance / 1000
 
         if duration > 0:
-            self.buzz(duration)
+            self.buzz(1)
         # No else needed, if distance is >= 90, nothing happens
 
     def beep_long(self):

@@ -10,7 +10,8 @@ sys.path.append('/home/admin/Drishtiprabha/IoT/v2/raspi/ML')
 from threading import Thread, Timer, Lock
 from app import ObjectDetectionModel  # Import the ML class
 from dotenv import load_dotenv
-from smallBuzzer import BuzzerSmall
+# from smallBuzzer import Buzzer
+from buzzer import Buzzer
 from ultrasonic import Ultrasonic
 from request_ec2 import EC2Request
 
@@ -27,7 +28,7 @@ api_key_from_env = os.getenv("API_KEY")
 
 # Pin setup
 button_pin = 11
-buzzer_pin = 36
+buzzer_pin = 37
 ultrasonic_pin_trig = 15
 ultrasonic_pin_echo = 16
 
@@ -44,7 +45,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Button with pull-up resistor
 
 # Initialize hardware components
-buzzer = BuzzerSmall(buzzer_pin)
+buzzer = Buzzer(buzzer_pin)
 ultrasonic = Ultrasonic(ultrasonic_pin_trig, ultrasonic_pin_echo)
 
 # Initialize ML model
