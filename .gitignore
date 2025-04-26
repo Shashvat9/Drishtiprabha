@@ -1,3 +1,13 @@
+# Environments
+/IoT/v2/raspi/dpVenv/
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+
+# ML Models (optional, but good practice)
+*.pt
+
+# Editor/OS stuff
 .env
 .vscode
-./IoT/v2/raspi/dpVenv
