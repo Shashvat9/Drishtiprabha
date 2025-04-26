@@ -31,7 +31,7 @@ void loop() {
     delay(5000);
     digitalWrite(SPEAKER,HIGH);
     digitalWrite(messagepin, HIGH);
-    digitalWrite(messagepin, LOW);    
+    digitalWrite(messagepin, LOW);
     // Serial.println("hi");    
   }
 

@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 class Buzzer:
-    def __init__(self, pin=37, frequency=1500):
+    def __init__(self, pin=37, frequency=1500):h
         self.pin = pin
         self.frequency = frequency
         GPIO.setmode(GPIO.BOARD)
