@@ -1,6 +1,6 @@
 package com.dp.doa;
 
-import javax.persistence.*;
+import javax.persistence.*; // Or javax.persistence.* for older JPA versions
 
 /**
  * Represents the 'aes_user_map' table, which maps user IDs to AES credential IDs.

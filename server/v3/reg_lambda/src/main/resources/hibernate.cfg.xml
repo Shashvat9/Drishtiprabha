@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!-- Database connection settings -->
+    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://drishtiprabha.cevmaesqkrjw.us-east-1.rds.amazonaws.com:3306/drishtiprabha</property>
+    <property name="hibernate.connection.username">admin</property>
+    <property name="hibernate.connection.password">Shashvatraj200399</property>
+
+
+
+    <!-- JDBC connection pool settings -->
+    <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+    <property name="hibernate.c3p0.min_size">2</property>
+    <property name="hibernate.c3p0.max_size">10</property>
+    <property name="hibernate.c3p0.timeout">30</property>
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <property name="hibernate.c3p0.idle_test_period">60</property>
+    <property name="hibernate.c3p0.max_connection_age">1800</property>
+
+    <!-- SQL dialect -->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+    <!-- Enable Hibernate's automatic session context management -->
+    <property name="hibernate.current_session_context_class">thread</property>
+
+    <!-- Echo all executed SQL to stdout -->
+    <property name="hibernate.show_sql">true</property>
+
+    <!-- Update the database schema on startup -->
+    <property name="hibernate.hbm2ddl.auto">validate</property>
+  </session-factory>
+</hibernate-configuration>

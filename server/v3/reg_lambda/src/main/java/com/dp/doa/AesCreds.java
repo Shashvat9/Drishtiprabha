@@ -1,6 +1,6 @@
 package com.dp.doa;
 
-import javax.persistence.*;
+import javax.persistence.*; // Or javax.persistence.* for older JPA versions
 
 /**
  * Represents the 'aes_creds' table, storing AES keys and IVs associated with users.
@@ -31,7 +31,7 @@ public class AesCreds {
      * The Java field name 'aesKey' avoids using the reserved keyword in code.
      */
     @Column(name = "`key`", nullable = false, length = 256) // Escape reserved keyword 'key'
-    private String key; // Use a non-reserved field name in Java
+    private String aesKey; // Use a non-reserved field name in Java
 
     /**
      * The Initialization Vector (IV) used with the AES key, stored as a string.
@@ -56,7 +56,7 @@ public class AesCreds {
      */
     public AesCreds(Integer userId, String aesKey, String iv) {
         this.userId = userId;
-        this.key = aesKey;
+        this.aesKey = aesKey;
         this.iv = iv;
     }
 
@@ -69,12 +69,12 @@ public class AesCreds {
     // No setter for keyId as it's database-generated
     // public void setKeyId(Integer keyId) { this.keyId = keyId; }
 
-    public String getKey() {
-        return key;
+    public String getAesKey() {
+        return aesKey;
     }
 
-    public void setKey(String aesKey) {
-        this.key = aesKey;
+    public void setAesKey(String aesKey) {
+        this.aesKey = aesKey;
     }
 
     public String getIv() {

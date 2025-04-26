@@ -73,7 +73,7 @@ public class User {
         this.mobile = mobile;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         // Consider if you ever want to expose the password hash via getter
         return password;
     }
