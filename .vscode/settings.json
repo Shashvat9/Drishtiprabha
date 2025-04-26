@@ -1,6 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "./IoT/v2/raspi/HW/v2/utils",
-        "./IoT/v2/raspi/ML"
-    ]
-}
