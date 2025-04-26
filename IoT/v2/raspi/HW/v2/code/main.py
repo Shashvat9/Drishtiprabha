@@ -186,7 +186,7 @@ ml_active = False
 try:
     # Button with internal pull-up enabled, uses BCM pin
     # Default bounce_time is None (handled differently), hold_time for long press
-    button = Button(button_pin_bcm, pull_up=True)
+    button = Button(button_pin_bcm, pull_up=True,bounce_time=0.2)
 
     # Initialize using migrated classes with BCM pins
     buzzer = Buzzer(buzzer_pin_bcm)
@@ -273,8 +273,8 @@ def main_loop():
         button.when_pressed = button_callback
         # Button also has when_released, when_held if needed
 
-        print("System initialized. Waiting for button events or running main loop...")
-        print(f"Using BCM pins - Button: {button_pin_bcm}, Buzzer: {buzzer_pin_bcm}, US Trig: {ultrasonic_pin_trig_bcm}, US Echo: {ultrasonic_pin_echo_bcm}")
+        print("System initialized.")
+        # print(f"Using BCM pins - Button: {button_pin_bcm}, Buzzer: {buzzer_pin_bcm}, US Trig: {ultrasonic_pin_trig_bcm}, US Echo: {ultrasonic_pin_echo_bcm}")
 
         # Keep the main loop for periodic tasks like ultrasonic reading
         while True:
