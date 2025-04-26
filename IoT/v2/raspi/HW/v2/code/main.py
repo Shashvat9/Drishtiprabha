@@ -186,7 +186,7 @@ ml_active = False
 try:
     # Button with internal pull-up enabled, uses BCM pin
     # Default bounce_time is None (handled differently), hold_time for long press
-    button = Button(button_pin_bcm, pull_up=True,bounce_time=0.2)
+    button = Button(button_pin_bcm, pull_up=True,bounce_time=0.1)
 
     # Initialize using migrated classes with BCM pins
     buzzer = Buzzer(buzzer_pin_bcm)
