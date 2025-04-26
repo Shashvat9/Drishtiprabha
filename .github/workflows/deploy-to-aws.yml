@@ -3,7 +3,7 @@ name: Deploy to AWS (Server Directory Only)
 on:
   push:
     paths:
-      - 'server/**' 
+      - 'server/v2/**' 
 
 jobs:
   deploy:
