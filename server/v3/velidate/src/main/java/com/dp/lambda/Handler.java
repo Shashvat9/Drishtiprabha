@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,14 +41,27 @@ public class Handler implements RequestHandler<Map<String, String>, Map<String, 
             return result;
         }
 
-        if(userUtils.isUserExists(email)){
-            result.put("error", "User Does not exists");
-            return result;
-        }
+//        if(userUtils.isUserExists(email)){
+//            result.put("error", "User Does not exists");
+//            return result;
+//        }
 
-        userUtils.validateUser(email,password);
-        result.put("code", "200");
-        result.put("message", "User validated successfully");
+        try{
+            if (userUtils.validateUser(email, password)) {
+                result.put("code", "200");
+                result.put("message", "User validated successfully");
+            } else {
+                result.put("code", "201");
+                result.put("message", "wrong email or password");
+            }
+        }
+        catch (RuntimeException e){
+            result.put("code", "500");
+            result.put("message", "user does not exists" + Arrays.toString(e.getStackTrace()));
+        }
+        finally {
+            sessionFactory.close();
+        }
         return result;
     }
 }

@@ -11,6 +11,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 
 public class UserUtils {
 
@@ -25,9 +26,11 @@ public class UserUtils {
         session.beginTransaction();
         // Check if the user already exists in the database
         String emailDigest = AesCrypto.digest(email, "SHA-256");
-        String hql = "SELECT User.password FROM User WHERE emailLookup = :emailDigest";
-        List<User> users = session.createQuery(hql, User.class)
+        System.out.println("digest"+emailDigest);
+        String hql = "SELECT 1 FROM User u WHERE u.emailLookup = :emailDigest";
+        List<?> users = session.createQuery(hql)
                 .setParameter("emailDigest", emailDigest)
+                .setMaxResults(1)
                 .getResultList();
         session.getTransaction().commit();
         session.close();
@@ -35,20 +38,52 @@ public class UserUtils {
     }
 
     private String getUserPassword(String email) {
-        String password;
-        Session sessionPass = sessionFactory.openSession();
-        sessionPass.beginTransaction();
-        // Check if the user already exists in the database
-        String emailDigest = AesCrypto.digest(email, "SHA-256");
+        String password = null; // Initialize to null
+        Session session = null; // Use a more descriptive name like 'session'
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
 
-        String getPassword = "SELECT User .password FROM User WHERE emailLookup = :emailDigest";
-        List<User> users = sessionPass.createQuery(getPassword, User.class)
-                .setParameter("emailDigest", emailDigest)
-                .getResultList();
+            // Generate the digest in the same raw format used for storage
+            String emailDigest = AesCrypto.digest(email, "SHA-256");
 
-        password = users.getFirst().getPassword();
-        sessionPass.getTransaction().commit();
-        sessionPass.close();
+            // --- CORRECTED HQL: Select the password field ---
+            String hql = "SELECT u.password FROM User u WHERE u.emailLookup = :emailDigest";
+
+            // --- Execute query, expecting a List of Strings ---
+            List<String> passwords = session.createQuery(hql, String.class) // Expect String.class
+                    .setParameter("emailDigest", emailDigest)
+                    .setMaxResults(1) // We only expect one result
+                    .getResultList();
+
+            session.getTransaction().commit(); // Commit transaction
+
+            // Check if the list is not empty before trying to access it
+            if (!passwords.isEmpty()) {
+                password = passwords.get(0); // Get the first (and only) password string
+            } else {
+                System.out.println("No user found with matching email digest for email: " + email);
+                // password remains null
+            }
+
+        } catch (Exception e) {
+            // Rollback transaction on error
+            if (session != null && session.getTransaction() != null && session.getTransaction().isActive()) {
+                try { session.getTransaction().rollback(); } catch (Exception rbEx) { System.err.println("Rollback failed: " + rbEx.getMessage()); }
+            }
+            // Log the error and rethrow
+            System.err.println("Error retrieving password for email [" + email + "]: " + e.getMessage());
+            e.printStackTrace();
+            // Rethrowing indicates failure to the calling method
+            throw new RuntimeException("Failed to retrieve user password", e);
+        } finally {
+            // Ensure the session is always closed
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+
+        return password; // Return the retrieved password (or null if not found)
 
 //        Session sessionKey = sessionFactory.openSession();
 //        sessionKey.beginTransaction();
@@ -77,14 +112,31 @@ public class UserUtils {
 //        }
 //        return decryptedPassword;
 
-        return password;
+//        return password;
     }
     public boolean validateUser(String email, String password) {
-        if(!isUserExists(email)){
-            throw new RuntimeException("User does not exist");
+        String storedHash = getUserPassword(email);
+
+        if (storedHash == null) {
+            // User does not exist or password hash couldn't be retrieved
+            System.out.println("Validation failed: User not found or password hash missing for email [" + email + "]");
+            return false;
         }
-        String storedPassword = getUserPassword(email);
-        return password.equals(storedPassword);
+
+        // 2. Calculate the SHA-512 hash of the password provided during login
+        //    Use the same AesCrypto.digest method that was used for storage.
+        String inputPasswordHash = AesCrypto.digest(password, "SHA-512");
+
+        // 3. Compare the calculated hash with the stored hash
+        //    Use Objects.equals for null-safety, although storedHash shouldn't be null here.
+        boolean isValid = Objects.equals(inputPasswordHash, storedHash);
+
+        System.out.println("Validation result for email [" + email + "]: " + isValid);
+        // For debugging (REMOVE in production):
+        // System.out.println("Stored Hash: " + storedHash);
+        // System.out.println("Input Hash : " + inputPasswordHash);
+
+        return isValid;
     }
 
 }
