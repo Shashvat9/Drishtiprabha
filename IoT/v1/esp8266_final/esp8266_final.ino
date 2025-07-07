@@ -26,8 +26,8 @@
 const char* ssid     = "Hi";
 const char* password = "hithere.";
 const String serverName = "https://3.6.71.39/api/v1/update_db.php";
-const char* googleApiKey = "AIzaSyC-iSJulKT-gdv4JF3_hc3UZfYlRWWh6w4";
-String apiKeyValue = "dp123";
+const char* googleApiKey = "";
+String apiKeyValue = "";
 String d_id = "2";
 
 #endif
@@ -38,8 +38,7 @@ WifiLocation location (googleApiKey);
 #define BOTtoken ""  // your Bot Token (Get from Botfather)
 
 
-#define CHAT_ID "5511379301" //shashvat
-// #define CHAT_ID "1638809558" //aryan
+#define CHAT_ID "" //shashvat
 
 // #define CHAT_ID ""
 // #define CHAT_ID ""
