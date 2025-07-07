@@ -1,5 +1,6 @@
 # Environments
 /IoT/v2/raspi/dpVenv/
+/IoT/v1/esp8266_final/keys.txt
 
 # Python cache & compiled files
 __pycache__/
